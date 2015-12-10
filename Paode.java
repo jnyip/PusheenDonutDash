@@ -42,43 +42,83 @@ public class Paode{
   /*****************************************************************
     **************             GETTERS            ******************
     ***************************************************************/
-  /* PaodeNumber */
+  /* getPaodeNumber() - Get Paode Number
+   * @param  None
+   * @return String the first 4 numbers of the yED label of the paode. 
+   *        Also the coordinates of the paode
+   */
   public String getPaodeNumber(){
     return paodeNumber;
   }
   
+  /* getXCoor() - Get X-Coordinate
+   * @param  None
+   * @return int The x-coordinate of the Paode
+   */
   public int getXCoor(){
     return xcoor;
   }
   
+  /* getYCoor() - Get Y-Coordinate
+   * @param  None
+   * @return int The y-coordinate of the Paode
+   */
   public int getYCoor(){
     return ycoor;
   }
   
+  /* getHome() - Get Home Status
+   * @param  None
+   * @return boolean  Whether this Paode is Home
+   */
   public boolean getHome(){
     return home;
   }
   
+  /* getDonut() - Get Donut Stattus
+   * @param  None
+   * @return boolean  Whether there is a donut at this Paode
+   */
   public boolean getDonut(){
     return donut;
   }
   
+  /* getMonster() - Get Monster Status
+   * @param  None
+   * @return boolean  Whether ther is a Monster at this Paode
+   */
   public boolean getMonster(){
     return monster;
   }
   
+  /* getTop() - Get Top Paode 
+   * @param  None
+   * @return Paode  Return the Paode above this Paode
+   */
   public Paode getTop(){
     return this.top;
   }
   
+  /* getBottom() - Get Bottom Paode
+   * @param  None
+   * @return Paode  Return the Paode below this Paode
+   */
   public Paode getBottom(){
     return this.bottom;
   }
   
+  /* getLeft() - Get Left Paode
+   * @param  None
+   * @return Paode  Return the Paode to the left of this Paode
+   */
   public Paode getLeft(){
     return this.left;
   }
   
+  /* getRight() - Get Right Paode
+   * @param  None
+   * @return Paode  Return the Paode Right of this Paode
+   */
   public Paode getRight(){
     return this.right;
   }
