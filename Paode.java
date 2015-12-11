@@ -16,7 +16,7 @@ public class Paode{
   private String paodeNumber;
   private int xcoor, ycoor;
   private boolean home;
-  private boolean donut;
+  private Donut donut;
   private boolean monster;
   private Paode top, bottom, left, right;
   
@@ -31,9 +31,10 @@ public class Paode{
     
     xcoor= Integer.parseInt(yEdNum.substring(0,2));
     ycoor = Integer.parseInt(yEdNum.substring(2,4));
-    donut = Integer.parseInt(yEdNum.substring(4,5)) == 1;
+    donut = (Integer.parseInt(yEdNum.substring(4,5)) == 1) ? new Donut(paodeNumber) : null;
     monster = Integer.parseInt(yEdNum.substring(5,6)) == 1;
     home = Integer.parseInt(yEdNum.substring(6,7)) == 1;
+
     
     // Setting all pointers to null at creation
     top = null; bottom = null; left = null; right = null; 
@@ -79,7 +80,7 @@ public class Paode{
    * @param  None
    * @return boolean  Whether there is a donut at this Paode
    */
-  public boolean getDonut(){
+  public Donut getDonut(){
     return donut;
   }
   
@@ -127,11 +128,12 @@ public class Paode{
     **************             SETTERS            ******************
     ***************************************************************/
   /* setDonut()- Update donut status
-   * @param update  The new boolean value.
+   * @param c  If 0, changes the donut to point to null.
    * @return void
    */
-  public void setDonut(boolean update){
-    donut = update;
+  public void setDonut(int c){
+    if (c == 0) 
+      donut = null;
   }
   
   /* setTop() - Sets the top pointer to the desired Paode
@@ -172,7 +174,7 @@ public class Paode{
   public String toString(){
     String result = "Paode #" + paodeNumber + ": \n";
     result += ("Coordinate: (" + xcoor + ", " + ycoor + "); ");
-    result += ("Donut: " + donut + "; Monster: " + monster + "; Home: " + home + "\n");
+    result += ("Donut: " + ((donut == null) ? "null" : donut )+ "; Monster: " + monster + "; Home: " + home + "\n");
     result += ("Top: " + ((top == null) ? "null" : top.getPaodeNumber()) + 
                "; Bottom: " + (bottom == null ? "null" : bottom.getPaodeNumber()) + 
                "; Left: " + (left == null ? "null" : left.getPaodeNumber()) + 
@@ -181,7 +183,7 @@ public class Paode{
   }
   
   public static void main (String[] args){
-    Paode p1 = new Paode ("1107010");
+    Paode p1 = new Paode ("1107110");
     Paode p2l = new Paode ("1007010");
     Paode p3r = new Paode ("1207100");
     Paode p4t = new Paode ("1106010");
@@ -203,7 +205,7 @@ public class Paode{
     System.out.println("Y: " + p1.getYCoor());
     System.out.println("Home: " + p1.getHome());
     System.out.println("Donut: " + p1.getDonut());
-    p1.setDonut(true);
+    p1.setDonut(0);
     System.out.println("Updated Donut Status: " + p1.getDonut());
     System.out.println("Monster: " + p1.getMonster());
     System.out.println("Top of p1: " + p1.getTop());
