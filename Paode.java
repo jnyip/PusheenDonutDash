@@ -3,7 +3,6 @@
   * Pusheen Donut Dash - Paode Object Class
   * 
   * CS 230 Fall 2015 Final Project
-  * Written by: Jamie Yip
   * Date: December 09, 2015
   * Purpose: Path/Node Object of a Maze. Contains the information of what 
   * is at each location in the maze. 
@@ -34,7 +33,7 @@ public class Paode{
     donut = (Integer.parseInt(yEdNum.substring(4,5)) == 1) ? new Donut(paodeNumber) : null;
     monster = Integer.parseInt(yEdNum.substring(5,6)) == 1;
     home = Integer.parseInt(yEdNum.substring(6,7)) == 1;
-
+    
     
     // Setting all pointers to null at creation
     top = null; bottom = null; left = null; right = null; 
@@ -141,6 +140,8 @@ public class Paode{
    * @return void
    */ 
   public void setTop (Paode top){
+    if (this.top != null)
+      System.out.println("Replacing top node at " + paodeNumber);
     this.top = top;
   }
   
@@ -149,6 +150,8 @@ public class Paode{
    * @return void
    */
   public void setBottom (Paode bottom){
+    if (this.bottom != null)
+      System.out.println("Replacing bottom node at " + paodeNumber);
     this.bottom = bottom;
   }
   
@@ -157,6 +160,8 @@ public class Paode{
    * @return void
    */
   public void setLeft (Paode left){
+    if (this.left != null)
+      System.out.println("Replacing left node at " + paodeNumber);
     this.left = left;
   }
   
@@ -165,16 +170,21 @@ public class Paode{
    * @return void
    */
   public void setRight (Paode right){
+    if (this.right != null)
+      System.out.println("Replacing right node at " + paodeNumber);
     this.right = right;
   }
   
+  /*****************************************************************
+    **************     Formatting for Printing      ****************
+    ***************************************************************/
   /* toString() - Formats the Object for easy reading 
    * @return String version of Object
    */
   public String toString(){
-    String result = "Paode #" + paodeNumber + ": \n";
-    result += ("Coordinate: (" + xcoor + ", " + ycoor + "); ");
-    result += ("Donut: " + ((donut == null) ? "null" : donut )+ "; Monster: " + monster + "; Home: " + home + "\n");
+    String result = "Paode #" + paodeNumber + ": ";
+    result += ("Coordinate: (" + xcoor + ", " + ycoor + ");\t");
+    result += ("Donut: " + ((donut == null) ? "null" : donut )+ ";\tMonster: " + monster + ";\tHome: " + home +";\t");
     result += ("Top: " + ((top == null) ? "null" : top.getPaodeNumber()) + 
                "; Bottom: " + (bottom == null ? "null" : bottom.getPaodeNumber()) + 
                "; Left: " + (left == null ? "null" : left.getPaodeNumber()) + 
@@ -182,6 +192,9 @@ public class Paode{
     return result;
   }
   
+  /*****************************************************************
+    **************             Testing            ******************
+    ***************************************************************/
   public static void main (String[] args){
     Paode p1 = new Paode ("1107110");
     Paode p2l = new Paode ("1007010");
@@ -212,7 +225,7 @@ public class Paode{
     System.out.println("Bottom of p1: " + p1.getBottom());
     System.out.println("Left of p1: " + p1.getLeft());
     System.out.println("Right of p1: " + p1.getRight());
-    System.out.println("\n\t=============p2l==============\n");
+    System.out.println("\t=============p2l==============");
     System.out.println(p2l);
     System.out.println("Paode: " + p2l.getPaodeNumber());
     System.out.println("X: " + p2l.getXCoor());
@@ -224,11 +237,11 @@ public class Paode{
     System.out.println("Bottom of p2l: " + p2l.getBottom());
     System.out.println("Left of p2l: " + p2l.getLeft());
     System.out.println("Right of p2l: " + p2l.getRight());
-    System.out.println("\n\t============p3r===============\n");
+    System.out.println("\t============p3r===============");
     System.out.println(p3r);
-    System.out.println("\n\t============p4t===============\n");
+    System.out.println("\t============p4t===============");
     System.out.println(p4t);
-    System.out.println("\n\t============p5b===============\n");
+    System.out.println("\t============p5b===============");
     System.out.println(p5b);
   }
 }
