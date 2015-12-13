@@ -1,0 +1,8 @@
+Phase #3: Labor Division 
+Pusheen Donut Dash
+Jesslyn Tannady, Jamie Yip, Brenda Ji (J.J. Biebs)
+CS230 Fall 2015
+
+Contributions of each team members:
+
+This was a collaborative process between the three of us. We had a lot of fun and it was great. Jesslyn worked on the GUI elements. Jamie primarily worked on the Paode and Maze classes. Brenda worked on the Donut, DonutStreak, Pusheen, and Game classes. She also created the .tgf files for the maze. We worked together to bring it all together and complete Pusheen Donut Dash. 
