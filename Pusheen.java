@@ -1,5 +1,5 @@
 /* Pusheen.java
- * Brenda Ji 
+ * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
  * Partners: Jamie Yip and Jesslyn Tannady
  * December 9, 2015
@@ -10,12 +10,12 @@ public class Pusheen{
  
   // instance variables
 //  private Maze maze; // does Pusheen need to know about the maze?
-  private int paodeNumber;
+  private String paodeNumber;
   private int donutPoints;
   private boolean isHome;
   private DonutStreak donuts;
   
-  public Pusheen(int pNum){
+  public Pusheen(String pNum){
    paodeNumber = pNum;   
   }
   
@@ -45,8 +45,6 @@ public class Pusheen{
 //  }
   
   public static void main(String[] args){
-    Pusheen p = new Pusheen(101011);
-    
+    Pusheen p = new Pusheen("1010100");
   }
-  
 }
