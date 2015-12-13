@@ -158,8 +158,13 @@ public class Maze{
    * @return String version of Object
    */
   public String toString(){
-//    String result = "Paodes of the Maze: \n" + maze + "\n\n Maze:\n";
-    String result ="Maze:\n";
+    String result = "Paodes of the Maze: \n["; 
+    
+    for (int i = 1; i<n; i++){
+      result +=("\n " + maze.get(i));
+    }
+    
+    result += "\n]\n\n Maze:\n";
     result += mazeFormatting();
     return result;
   }
@@ -193,7 +198,7 @@ public class Maze{
     
     // Because I am slightly paranoid...
     // Checking if the LinkedList and the 2D array are correct:
-    verifyingMaze(paodeMaze);
+//    verifyingMaze(paodeMaze);
     
    
     // ==== ACTUALLY FORMATTING NOW ====
@@ -251,16 +256,17 @@ public class Maze{
     **************             Testing            ******************
     ***************************************************************/
   public static void main (String[] args){
-//    System.out.println("Test #1 of completeMazeUnfilled.tgf");
-//    Maze real = new Maze("completeMazeUnfilled.tgf");
-//    System.out.println(real);
-//    System.out.println(real.getBeginning());
-//    System.out.println(real.getHome());
+    System.out.println("Test #1 of completeMazeUnfilled.tgf");
+    Maze real = new Maze("completeMazeUnfilled.tgf");
+    System.out.println(real);
+    System.out.println(real.getBeginning());
+    System.out.println(real.getHome());
+    System.out.println(real.getBeginning().getRight());
     
-    System.out.println("\nTest #2 of maze2.tgf");
-    Maze maze2 = new Maze("maze2.tgf");
-    System.out.println(maze2);
-    System.out.println(maze2.getBeginning());
-    System.out.println(maze2.getHome());
+//    System.out.println("\nTest #2 of maze2.tgf");
+//    Maze maze2 = new Maze("maze2.tgf");
+//    System.out.println(maze2);
+//    System.out.println(maze2.getBeginning());
+//    System.out.println(maze2.getHome());
   }
 }
