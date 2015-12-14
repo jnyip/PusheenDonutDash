@@ -31,7 +31,6 @@ public class StomachPanel extends JPanel {
     leftPanel.setPreferredSize (new Dimension (30, 30));
     leftColor = WHITE;
     leftPanel.setBackground (leftColor);
-//    leftPanel.EmptyBorder(2, 2, 2, 2);
     
     midPanel = new JPanel();
     midPanel.setPreferredSize (new Dimension (30, 30));
@@ -42,22 +41,28 @@ public class StomachPanel extends JPanel {
     rightPanel.setPreferredSize (new Dimension (30, 30));
     rightColor = WHITE;
     rightPanel.setBackground (rightColor);
+   
+    Box panelBox = Box.createHorizontalBox();
+    panelBox.add(leftPanel);
+    panelBox.add(new Box.Filler(new Dimension(5, 100), new Dimension(5, 100), new Dimension(110, 30)));
+    panelBox.add(midPanel);
+    panelBox.add(new Box.Filler(new Dimension(5, 100), new Dimension(5, 100), new Dimension(110, 30)));
+    panelBox.add(rightPanel);
     
-    buttonPanel = new JPanel();
-    buttonPanel.setLayout(new BorderLayout());
-    buttonPanel.add(blueButton, BorderLayout.WEST);
-    buttonPanel.add(pinkButton, BorderLayout.CENTER);
-    buttonPanel.add(brownButton, BorderLayout.EAST);
+    Box buttonBox = Box.createHorizontalBox();
+    buttonBox.add(blueButton);
+    buttonBox.add(pinkButton);
+    buttonBox.add(brownButton);
+    
+    Box bigPanel = Box.createVerticalBox();
+    bigPanel.add(panelBox);
+    bigPanel.add(buttonBox);
     
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
-    add(buttonPanel, BorderLayout.SOUTH);
+    add(bigPanel, BorderLayout.SOUTH);
     
-    add(leftPanel, BorderLayout.WEST);
-    add(midPanel, BorderLayout.CENTER);
-    add(rightPanel, BorderLayout.EAST);
-    
-    setPreferredSize(new Dimension(300, 110));
+    setPreferredSize(new Dimension(300, 180));
     
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     setBackground(new Color(250, 241, 227));
