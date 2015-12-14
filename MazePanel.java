@@ -34,6 +34,13 @@ public class MazePanel extends JPanel {
     setFocusable(true);
   }
   
+  //-----------------------------------------------------------------     
+  //  Draws the image in the current location.     
+  //-----------------------------------------------------------------     
+  public void paintComponent (Graphics page) {        
+    super.paintComponent (page);        
+    currentImage.paintIcon (this, page, x, y); 
+  }
   
 //*****************************************************************
 // Represents the listener for keyboard activity.
@@ -84,6 +91,7 @@ public class MazePanel extends JPanel {
           }
           break;
       }
+      repaint();
     }
     
 //-----------------------------------------------------------------
@@ -91,7 +99,5 @@ public class MazePanel extends JPanel {
 //-----------------------------------------------------------------
     public void keyTyped (KeyEvent event) {}
     public void keyReleased (KeyEvent event) {}
-    
   }
-  
 }
