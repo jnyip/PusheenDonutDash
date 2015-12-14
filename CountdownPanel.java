@@ -12,10 +12,11 @@ import javax.swing.*;
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
   private Timer timer;
-  private int COUNTDOWN_SECONDS = 5;
+  private int COUNTDOWN_SECONDS = 90;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
-
+  private JButton push;
+  
   public CountdownPanel() {
     toolkit = Toolkit.getDefaultToolkit();
     timer = new Timer();
@@ -23,26 +24,62 @@ public class CountdownPanel extends JPanel {
     textLabel = new JLabel ("Time left:");
     timeLabel = new JLabel (time);
     
+    push = new JButton ("Reset timer");
+    push.addActionListener (new ButtonListener());
+    
     timer.schedule(new RemindTask(), 0, //initial delay
-        1 * 1000); //subsequent rate
+                   1 * 1000); //subsequent rate
     
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     timeLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
-    add(timeLabel, BorderLayout.SOUTH);
+    add(timeLabel, BorderLayout.CENTER);
+    add(push, BorderLayout.SOUTH);
     
-    setPreferredSize(new Dimension(300, 70));
+    setPreferredSize(new Dimension(300, 110));
     
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     timeLabel.setForeground(new Color(61, 34, 8));
   }
-
+  
+  //*****************************************************************
+  //  Represents a listener for button push (action) events.
+  //*****************************************************************
+  private class ButtonListener implements ActionListener {
+    //--------------------------------------------------------------
+    //  Updates the counter and label when the button is pushed.
+    //--------------------------------------------------------------
+    public void actionPerformed (ActionEvent event)
+    {
+      new CountdownPanel();
+      
+      int numWarningBeeps = COUNTDOWN_SECONDS;
+      
+      String minutes = String.valueOf(numWarningBeeps/60);
+      String seconds = String.valueOf(numWarningBeeps%60);
+      if (seconds.length() == 1) {
+        seconds = "0" + seconds;
+      }
+      
+      time = (minutes + ":" + seconds);
+      
+//      timeLabel = String.valueOf(time); // When ANY button is clicked! (If there were more...)
+      textLabel.setText("Time left:");
+      timeLabel.setText(String.valueOf(time));
+      
+      timer = new Timer();
+      timer.schedule(new RemindTask(), 0, //initial delay
+                   1 * 1000);
+    }
+  }
+  
+  
   class RemindTask extends TimerTask {
     int numWarningBeeps = COUNTDOWN_SECONDS;
-
+    
     public void run() {
       if (numWarningBeeps > 0) {
 //        toolkit.beep();
@@ -57,8 +94,8 @@ public class CountdownPanel extends JPanel {
         time = (minutes + ":" + seconds);
         timeLabel.setText(time);
         
-//        System.out.println(time);
         numWarningBeeps--;
+        push.setEnabled(false);
       } else {
         toolkit.beep();
         textLabel.setText("Time's up!");
@@ -66,12 +103,13 @@ public class CountdownPanel extends JPanel {
 //        System.out.println(time);
         timer.cancel(); //Stops the timer, but is not necessary if we call System.exit
 //        System.exit(0); //Stops the AWT thread (and everything else)
+        push.setEnabled(true);
       }
     }
   }
-
+  
   public static void main(String args[]) {
     System.out.println("Starting countdown.");
     new CountdownPanel();
   }
-}   
+}
