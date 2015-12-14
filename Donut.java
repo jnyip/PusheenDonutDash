@@ -44,6 +44,10 @@ public class Donut {
     return paodeNumber;
   }
   
+  public int getVALUE(){
+   return VALUE;
+  }
+  
   // Setters
   /**
    * Sets the color of the donut to the one given. 

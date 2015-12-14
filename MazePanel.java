@@ -8,37 +8,32 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MazePanel extends JPanel {
+  private Pusheen user;
+  private Maze maze;
   private final int WIDTH = 500, HEIGHT = 500;
   private final int JUMP = 121; // increment for image movement
   private final int IMAGE_SIZE = 31;
-  private ImageIcon up, down, right, left, currentImage;
+  private ImageIcon cat, currentImage;
   private int x, y;
   
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
-  public MazePanel() {
+  public MazePanel(String tgfFilename) {
+    maze = new Maze(tgfFilename);
+    Paode start = maze.getBeginning();
+    user = new Pusheen(start);
+    
     addKeyListener (new MazeListener());
-    x = WIDTH / 2;
-    y = HEIGHT / 2;
-    up = new ImageIcon ("images/arrowUp.gif");
-    down = new ImageIcon ("images/arrowDown.gif");
-    left = new ImageIcon ("images/arrowLeft.gif");
-    right = new ImageIcon ("images/arrowRight.gif");
-    currentImage = right;
+    x = 30;
+    y = 30;
+    cat = new ImageIcon ("images/pusheen.gif");
+    currentImage = cat;
 //    setBackground (Color.black);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
   }
   
-  
-//-----------------------------------------------------------------
-// Draws the image in the current location.
-//-----------------------------------------------------------------
-  public void paintComponent (Graphics page) {
-    super.paintComponent (page);
-    currentImage.paintIcon (this, page, x, y);
-  }
   
 //*****************************************************************
 // Represents the listener for keyboard activity.
@@ -49,26 +44,46 @@ public class MazePanel extends JPanel {
 // Responds to the user pressing arrow keys by adjusting the
 // image and image location accordingly.
 //-----------------------------------------------------------------
-    public void keyPressed (KeyEvent event) {
-      switch (event.getKeyCode()) {
+    // instance variable 
+    Paode p;
+    boolean moved;
+    
+    public void keyPressed (KeyEvent event){
+     
+      switch (event.getKeyCode()){
         case KeyEvent.VK_UP:
-          currentImage = up;
-          y -= JUMP;
+          p = user.getTop();
+          moved = user.move(p);
+          if (moved){
+            currentImage = cat;
+            y -= JUMP;
+          }
           break;
         case KeyEvent.VK_DOWN:
-          currentImage = down;
-          y += JUMP;
+          p = user.getBottom();
+          moved = user.move(p);
+          if (moved){
+            currentImage = cat;
+            y += JUMP;
+          }
           break;
         case KeyEvent.VK_LEFT:
-          currentImage = left;
-          x -= JUMP;
+          p = user.getLeft();
+          moved = user.move(p);
+          if (moved){
+            currentImage = cat;
+            x -= JUMP;
+          }
           break;
         case KeyEvent.VK_RIGHT:
-          currentImage = right;
-          x += JUMP;
+          p = user.getRight();
+          moved = user.move(p);
+          if (moved){
+            currentImage = cat;
+            x += JUMP;
+          }
           break;
       }
-      repaint();
     }
     
 //-----------------------------------------------------------------

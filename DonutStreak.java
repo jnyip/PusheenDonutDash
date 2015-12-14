@@ -17,7 +17,7 @@ public class DonutStreak{
   // instance variables
   private ArrayQueue<Donut> donutQueue; // 1: pink, 2: brown, 3: blue
   private int[] colorCount; // [0]: pink [1]: brown [2]: blue  
-  private final int CCSIZE = 3; 
+  private final int CCSIZE = 3; // number of colors 
   
   public DonutStreak(){
     donutQueue = new ArrayQueue<Donut>();
@@ -39,7 +39,7 @@ public class DonutStreak{
       donutQueue.enqueue(d);
       colorCount[color]++;
     }
-    //peek and stuff
+   
     else if (donutQueue.size() == 3){
       Donut temp = donutQueue.dequeue();
 //      System.out.println("Temp donut color: " + temp.getColor());
