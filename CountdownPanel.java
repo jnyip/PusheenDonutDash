@@ -12,7 +12,7 @@ import javax.swing.*;
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
   private Timer timer;
-  private int COUNTDOWN_SECONDS = 75;
+  private int COUNTDOWN_SECONDS = 5;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
 
@@ -20,7 +20,7 @@ public class CountdownPanel extends JPanel {
     toolkit = Toolkit.getDefaultToolkit();
     timer = new Timer();
     
-    textLabel = new JLabel ("COUNTDOWN");
+    textLabel = new JLabel ("Time left:");
     timeLabel = new JLabel (time);
     
     timer.schedule(new RemindTask(), 0, //initial delay
@@ -53,15 +53,16 @@ public class CountdownPanel extends JPanel {
         if (seconds.length() == 1) {
           seconds = "0" + seconds;
         }
-        time = (minutes + ":" + seconds);
         
+        time = (minutes + ":" + seconds);
         timeLabel.setText(time);
+        
 //        System.out.println(time);
         numWarningBeeps--;
       } else {
         toolkit.beep();
-        time = ("Time's up!");
-        timeLabel.setText(time);
+        textLabel.setText("Time's up!");
+        timeLabel.setText("0:00");
 //        System.out.println(time);
         timer.cancel(); //Stops the timer, but is not necessary if we call System.exit
 //        System.exit(0); //Stops the AWT thread (and everything else)
@@ -72,6 +73,5 @@ public class CountdownPanel extends JPanel {
   public static void main(String args[]) {
     System.out.println("Starting countdown.");
     new CountdownPanel();
-    System.out.println("Countdown started.");
   }
 }   
