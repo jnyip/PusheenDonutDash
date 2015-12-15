@@ -59,7 +59,7 @@ public class MazePanel extends JPanel {
      
       switch (event.getKeyCode()){
         case KeyEvent.VK_UP:
-          p = user.getTop();
+          p = user.getPaode().getTop();
           moved = user.move(p);
           if (moved){
             currentImage = cat;
@@ -67,7 +67,7 @@ public class MazePanel extends JPanel {
           }
           break;
         case KeyEvent.VK_DOWN:
-          p = user.getBottom();
+          p = user.getPaode().getBottom();
           moved = user.move(p);
           if (moved){
             currentImage = cat;
@@ -75,7 +75,7 @@ public class MazePanel extends JPanel {
           }
           break;
         case KeyEvent.VK_LEFT:
-          p = user.getLeft();
+          p = user.getPaode().getLeft();
           moved = user.move(p);
           if (moved){
             currentImage = cat;
@@ -83,7 +83,7 @@ public class MazePanel extends JPanel {
           }
           break;
         case KeyEvent.VK_RIGHT:
-          p = user.getRight();
+          p = user.getPaode().getRight();
           moved = user.move(p);
           if (moved){
             currentImage = cat;
