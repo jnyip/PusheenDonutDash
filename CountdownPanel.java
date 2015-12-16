@@ -12,7 +12,7 @@ import javax.swing.*;
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
   private Timer timer;
-  private int COUNTDOWN_SECONDS = 35;
+  private int COUNTDOWN_SECONDS = 90;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
   private JButton push;

@@ -15,7 +15,7 @@ public class MazePanel extends JPanel {
   private final int WIDTH = 450, HEIGHT = 450;
   private final int JUMP = 30; // increment for image movement
   private final int IMAGE_SIZE = 30;
-  private ImageIcon cat, currentImage;
+  private ImageIcon cat, monster, pinkDonut, brownDonut, blueDonut;
   private int x, y;
   private CountdownPanel countdown;
   private Color BROWN = new Color(97,80,73);
@@ -39,7 +39,10 @@ public class MazePanel extends JPanel {
     x = 30;
     y = 30;
     cat = new ImageIcon ("images/30pusheen.gif");
-    currentImage = cat;
+    monster = new ImageIcon("images/30monster.gif");
+    pinkDonut = new ImageIcon("images/30dpink.gif");
+    brownDonut = new ImageIcon("images/30dbrown.gif");
+    blueDonut = new ImageIcon("images/30dblue.gif");
     setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
@@ -55,18 +58,32 @@ public class MazePanel extends JPanel {
     for (int i = 0 ; i < maze.getSize(); i++){
       Paode current = llMaze.get(i);
       page.setColor(GREEN);
-      page.fillRect( ((current.getXCoor()*30)/*-60*/),
-                    ((current.getYCoor()*30)/*-60*/), 30,30);
+      page.fillRect( ((current.getXCoor()*30)),
+                    ((current.getYCoor()*30)), 30,30);
+      if (current.getMonster())
+        monster.paintIcon (this, page, (current.getXCoor()*30), 
+                           (current.getYCoor()*30)); 
+      if (current.getDonut() != null){
+        if (current.getDonut().getColor() == 1)
+         pinkDonut.paintIcon (this, page, (current.getXCoor()*30), 
+                           (current.getYCoor()*30));
+        if (current.getDonut().getColor() == 2)
+         brownDonut.paintIcon (this, page, (current.getXCoor()*30), 
+                           (current.getYCoor()*30));
+        if (current.getDonut().getColor() == 3)
+         blueDonut.paintIcon (this, page, (current.getXCoor()*30), 
+                           (current.getYCoor()*30));
+      } 
     }
     
     page.setColor(BROWN);
     page.fillRect( 0,0, 30,30);
     Paode home = maze.getHome();
     page.setColor(new Color (196,138,102));
-    page.fillRect( ((home.getXCoor()*30)/*-30*/),
-                    ((home.getYCoor()*30)/*-30/*/), 30,30);
+    page.fillRect( ((home.getXCoor()*30)),
+                    ((home.getYCoor()*30)), 30,30);
     
-    currentImage.paintIcon (this, page, x, y); 
+    cat.paintIcon (this, page, x, y); 
   }
   
 //*****************************************************************
