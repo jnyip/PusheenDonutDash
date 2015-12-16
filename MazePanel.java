@@ -24,8 +24,8 @@ public class MazePanel extends JPanel {
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
-  public MazePanel(String tgfFilename, Pusheen push) {
-    user = push;
+  public MazePanel(String tgfFilename, Pusheen pusheenUser) {
+    user = pusheenUser;
     maze = new Maze(tgfFilename);
     llMaze = maze.getMaze();
     Paode start = maze.getBeginning();

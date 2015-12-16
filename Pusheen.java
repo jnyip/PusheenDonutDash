@@ -1,5 +1,5 @@
 /* Pusheen.java
- * Pusheen class creates an "avatar" for the user to play as.  
+ * Pusheen class creates an "avatar" for the user to play as during the game.  
  * 
  * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
@@ -18,6 +18,7 @@ public class Pusheen{
   private int donutPoints;
   private boolean isHome;
   private DonutStreak donuts;
+  private boolean gameOver;
   
   /* Constructor: Create a Pusheen object that can move over the paodes in the 
    * maze. 
@@ -32,6 +33,7 @@ public class Pusheen{
     donuts = new DonutStreak();
     donutPoints = 0;
     isHome = false;
+    gameOver = false;
   }
   
   /**
@@ -47,6 +49,7 @@ public class Pusheen{
     if (p != null){ // makes sure that the given paode is real first 
       if (p.getHome()){ // check if home
         isHome = true;
+        gameOver = true;
         System.out.println("HOME");
       }
       if (p.getMonster()){ // check if the Paode contains a monster 

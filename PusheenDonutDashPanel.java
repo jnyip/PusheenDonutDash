@@ -9,7 +9,7 @@ public class PusheenDonutDashPanel extends JPanel {
   private JLabel title;
   private JPanel countdown, points, stomach, maze;
   
-  public PusheenDonutDashPanel() {
+  public PusheenDonutDashPanel(Pusheen pusheenUser) {
     
     title = new JLabel ("Pusheen Donut Dash");
     title.setFont(new Font("Comic Sans", Font.BOLD, 30));

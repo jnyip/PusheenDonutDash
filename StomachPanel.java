@@ -14,7 +14,7 @@ public class StomachPanel extends JPanel {
   private Color PINK = new Color(245, 91, 98);
   private Color BROWN = new Color(97, 80, 73);
   
-  public StomachPanel() {
+  public StomachPanel(Pusheen pusheenUser) {
     
     textLabel = new JLabel ("Last 3 collected:");
     

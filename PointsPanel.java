@@ -12,8 +12,8 @@ public class PointsPanel extends JPanel
   //-----------------------------------------------------------------
   //  Constructor: Sets up the GUI.
   //-----------------------------------------------------------------
-  public PointsPanel (Pusheen push) {
-    user = push;
+  public PointsPanel (Pusheen pusheenUser) {
+    user = pusheenUser;
     points = 0;
     
     push = new JButton ("Add points");
