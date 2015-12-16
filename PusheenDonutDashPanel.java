@@ -22,7 +22,7 @@ public class PusheenDonutDashPanel extends JPanel {
     countdown.setPreferredSize(new Dimension(250, 110));
     stomach = new StomachPanel();
     stomach.setPreferredSize(new Dimension(250, 180));
-    maze = new DirectionPanel(); // temporary
+    maze = new MazePanel("completeMazeUnfilled.tgf"); // temporary
     maze.setPreferredSize(new Dimension(900, 900));
     // Right width = 300, Right height = 400 (not including label)
     // Total width = 1800, Total height = 1300 (not including label)

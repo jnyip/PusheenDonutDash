@@ -85,19 +85,6 @@ public class Donut {
    return VALUE;
   }
   
-//  // ******************************* SETTERS ******************************* //
-//  /**
-//   * NEED???
-//   * setColor()
-//   * Sets the color of the donut to the one given. 
-//   *
-//   * @param c This is the int associated with the desired color  
-//   * @return Nothing 
-//   */  
-//  public void setColor(int c){
-//    color = c;
-//  }
-  
   /**
    * toString()
    * Returns a String representation of the donut 
