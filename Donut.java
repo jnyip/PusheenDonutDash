@@ -1,11 +1,13 @@
 /* Donut.java
  * Donut Class creates a donut of a random color to be be placed randomly in the
- * maze. The Donut object will award points to the user if Pusheen eats a donut. 
+ * maze. 
  * 
  * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
  * Partners: Jamie Yip and Jesslyn Tannady
- * December 9, 2015
+ * Last Modified: December 15, 2015
+ * 
+ * Purpose: To award points to the user if donuts are collected. 
  */ 
 import java.util.Random;
 
@@ -62,17 +64,17 @@ public class Donut {
     return color;
   }
   
-  /**
-   * NEED???
-   * getPaodeNumber()
-   * Returns the paodeNumber where the donut is located on the maze. 
-   *
-   * @param None
-   * @return String Returns the PaodeNumber  
-   */
-  public String getPaodeNumber(){
-    return paodeNumber;
-  }
+//  /**
+//   * NEED???!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   * getPaodeNumber()
+//   * Returns the paodeNumber where the donut is located on the maze. 
+//   *
+//   * @param None
+//   * @return String Returns the PaodeNumber  
+//   */
+//  public String getPaodeNumber(){
+//    return paodeNumber;
+//  }
   
   /** 
    * getVALUE()
@@ -99,6 +101,7 @@ public class Donut {
   }
   
   /**
+   * main()
    * The main method that tests the creation of a donut and the getters and 
    * the setters.
    * 
@@ -107,7 +110,7 @@ public class Donut {
    */
   public static void main(String[] args){
     Donut d = new Donut("0101000");
-    System.out.println("String representation (color and value): " + d);
+    System.out.println("String representation (color and value):\n" + d);
     System.out.println("\nTesting printColor()\nColor: " + d.printColor());
     System.out.println("\nTesting getColor()\nColor Number: " + d.getColor());
     System.out.println("\nTesting getVALUE()\nValue: " + d.getVALUE());    
