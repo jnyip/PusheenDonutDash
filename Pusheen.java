@@ -1,10 +1,13 @@
 /* Pusheen.java
- * Pusheen class creates an "avatar" for the user to play as during the game.  
+ * Pusheen class creates an object that keeps track of the points collected, 
+ * the donut streak, if the user is home, if the game is over, and where the 
+ * user is in the Paode linked list.  
  * 
  * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
  * Partners: Jamie Yip and Jesslyn Tannady
- * December 9, 2015
+ * Last Modified: December 16, 2015
+ * Purpose: Create an "avatar" for the user to play the game as Pusheen 
  */ 
 
 import javax.swing.*;
@@ -32,8 +35,6 @@ public class Pusheen{
     user = null;  
     donuts = new DonutStreak();
     donutPoints = 0;
-//    isHome = false;
-//    gameOver = false;
   }
   
   /**
@@ -55,22 +56,23 @@ public class Pusheen{
       }
       if (p.getMonster()){ // check if the Paode contains a monster 
         donuts.scared();
-        donutPoints = 0;
         System.out.println("MONSTER!"); 
       }
       if (p.getDonut() != null){ // check if Paode contains a donut 
-          donutPoints += p.getDonut().getVALUE();
-          donuts.eatAndPoop(p.getDonut());
-          System.out.println("DONUT");
+        // First add the donut to DonutStreak...
+        donutPoints += p.getDonut().getVALUE();
+        donuts.eatAndPoop(p.getDonut());
+        System.out.println("DONUT");
         
-        if (donuts.checkStreak()){ // must check for donut streak first 
-          donutPoints += 10;
+        // Then check if the donut that has been added has created a streak 
+        if (donuts.checkStreak()){ 
+          donutPoints += 8;
           System.out.println("DONUT STREAK!"); 
         }
         
       }
       user = p; // update Pusheen's placement in the maze
-      moved = true; 
+      moved = true; // Since Pusheen was able to move, set boolean to true
       System.out.println("Pusheen was able to move.");
     }
     return moved;
@@ -128,25 +130,26 @@ public class Pusheen{
 // ******************************* SETTERS ******************************* //
   /**
    * setPaode()
-   * Sets Pusheen to the Paode given 
+   * Sets Pusheen to the Paode given --> mostly used when we begin the game and
+   * set Pusheen's starting position to the first Paode in the maze
    *
-   * @param Paode 
+   * @param Paode The Paode that we want Pusheen to go to 
    * @return Nothing   
    */
   public void setPaode(Paode p){
     user = p;
   }
   
-  public void setPoints(int points){
-    donutPoints += points;
-  }
-  
+  /**
+   * setGameOver()
+   * Sets the gameOver accordingly --> mostly used by the CountdownPanel to tell
+   * Pusheen that the game is over/time is up
+   *
+   * @param g The boolean that needs to be set to
+   * @return Nothing   
+   */
   public void setGameOver(boolean g){
     gameOver = g;
-  }
-  
-  public void setIsHome (boolean h) {
-    isHome = h;
   }
   
   /**

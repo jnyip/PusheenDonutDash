@@ -1,13 +1,19 @@
+/* CountdownPanel.java
+ * 
+ * Written by: Jesslyn Tannady
+ * CS 230 Final Project: Pusheen Donut Dash
+ * Partners: Jamie Yip and Brenda Ji
+ * Last Modified: December 16, 2015
+ * 
+ * Purpose: Displays the time left to the user in the GUI 
+ */ 
+
 import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-/**
- * Schedule a task that executes once every second.
- */
 
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
@@ -18,6 +24,11 @@ public class CountdownPanel extends JPanel {
   private JButton push;
   private Pusheen user;
   
+  /* Constructor: Creates the CountdownPanel where a task is scheduled and 
+   * executed once every second. Time will be displayed to the user by this panel.
+   * 
+   * @param None
+   */
   public CountdownPanel(Pusheen PusheenUser) {
     user = PusheenUser;
     
@@ -50,6 +61,7 @@ public class CountdownPanel extends JPanel {
   
   //*****************************************************************
   //  Represents a listener for button push (action) events.
+  //  COMMENTED OUT FOR GAME PURPOSES --> MAY USE IN THE FUTURE
   //*****************************************************************
   private class ButtonListener implements ActionListener {
     //--------------------------------------------------------------
@@ -114,10 +126,4 @@ public class CountdownPanel extends JPanel {
       }
     }
   }
-  
-//  public static void main(String args[]) {
-//    Pusheen user = new Pusheen();
-//    System.out.println("Starting countdown.");
-//    new CountdownPanel(user);
-//  }
 }

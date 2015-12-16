@@ -64,18 +64,6 @@ public class Donut {
     return color;
   }
   
-//  /**
-//   * NEED???!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//   * getPaodeNumber()
-//   * Returns the paodeNumber where the donut is located on the maze. 
-//   *
-//   * @param None
-//   * @return String Returns the PaodeNumber  
-//   */
-//  public String getPaodeNumber(){
-//    return paodeNumber;
-//  }
-  
   /** 
    * getVALUE()
    * Returns the amount of points the donut gives. 
