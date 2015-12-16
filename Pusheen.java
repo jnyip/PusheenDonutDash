@@ -62,12 +62,10 @@ public class Pusheen{
         if (donuts.checkStreak()){ // must check for donut streak first 
           donutPoints += 10;
           System.out.println("DONUT STREAK!"); 
-          p.setDonut(0);
         }
         else{ // if no streak, simply adds a donut 
           donutPoints += p.getDonut().getVALUE();
           donuts.eatAndPoop(p.getDonut());
-          p.setDonut(0);
           System.out.println("DONUT");
         }
       }

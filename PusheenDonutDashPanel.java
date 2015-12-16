@@ -7,7 +7,9 @@ import javax.swing.border.*;
 public class PusheenDonutDashPanel extends JPanel {
   
   private JLabel title;
-  private JPanel countdown, points, stomach, maze;
+  private JPanel countdown, maze;
+  private PointsPanel points;
+  private StomachPanel stomach;
   private Pusheen PusheenUser;
   
   public PusheenDonutDashPanel(Pusheen pusheenUser) {
@@ -18,14 +20,19 @@ public class PusheenDonutDashPanel extends JPanel {
     title.setForeground(new Color(61, 34, 8));
     title.setAlignmentX(Component.CENTER_ALIGNMENT);
     
+    
     points = new PointsPanel(PusheenUser);
     points.setPreferredSize(new Dimension(300, 110));
+    
     countdown = new CountdownPanel(PusheenUser);
     countdown.setPreferredSize(new Dimension(300, 110));
+    
     stomach = new StomachPanel(PusheenUser);
     stomach.setPreferredSize(new Dimension(300, 200));
-    maze = new MazePanel("completeMazeUnfilled.tgf", pusheenUser); // temporary
+    
+    maze = new MazePanel("completeMazeUnfilled.tgf", PusheenUser, points, stomach); // temporary
     maze.setPreferredSize(new Dimension(450, 450));
+    
     
     Box rightBox = Box.createVerticalBox();
     rightBox.add(new Box.Filler(new Dimension(300, 10), new Dimension(300, 10), new Dimension(300, 10)));

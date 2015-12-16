@@ -112,7 +112,6 @@ public class CountdownPanel extends JPanel {
         push.setEnabled(true);
         timer.cancel();
       }
-      System.out.println("CDP says Pusheen is home : " + user.getIsHome());
     }
   }
   

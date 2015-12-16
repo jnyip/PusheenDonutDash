@@ -34,7 +34,7 @@ public class StomachPanel extends JPanel {
     rightPanel.setPreferredSize (new Dimension (20, 20));
     rightColor = WHITE;
     rightPanel.setBackground (rightColor);
-   
+    
     Box panelBox = Box.createHorizontalBox();
     panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
     panelBox.add(leftPanel);
@@ -61,55 +61,31 @@ public class StomachPanel extends JPanel {
     midPanel.setFocusable(true);
     rightPanel.setFocusable(true);
     
-    leftPanel.addKeyListener(new StomachListener());
-    midPanel.addKeyListener(new StomachListener());
-    rightPanel.addKeyListener(new StomachListener());
-    
   }
   
-  //*****************************************************************
-  //  Represents the listener
-  //*****************************************************************
-  private class StomachListener implements KeyListener {
-    //--------------------------------------------------------------
-    //  Updates the counter and label when the button is pushed.
-    //--------------------------------------------------------------
-//    DonutQueue donuts = user.getDonuts();
-    Donut donut;
-    
-    public void keyPressed (KeyEvent event)
-    {
-      donut = user.getPaode().getDonut();
-      if (donut != null){
-//        DonutQueue temp = donuts;
-//        Donut tempDonut = donuts.dequeue();
-        leftColor = midColor;
-        midColor = rightColor;
-        switch (event.getKeyCode()) {
-          case KeyEvent.VK_UP: case KeyEvent.VK_DOWN:
-          case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT:          
-            System.out.println("Hit UP key");
-            if (donut.getColor() == 1){
-              rightColor = PINK;
-            }
-            else if (donut.getColor() == 2){
-              rightColor = BROWN;
-            }
-            else{
-              rightColor = BLUE;
-            }
-            leftPanel.setBackground(leftColor);
-            midPanel.setBackground(midColor);
-            rightPanel.setBackground(rightColor);
-            break;        
-        }
+  public void eatDonuts(){
+    Paode p = user.getPaode();
+    Donut donut = p.getDonut();
+    if (donut != null){
+      leftColor = midColor;
+      midColor = rightColor;
+      System.out.println("I ATE A DONUT!!!!!!");
+      if (donut.getColor() == 1){
+        rightColor = PINK;
+        System.out.println("THE DONUT WAS PINK");
       }
-
+      else if (donut.getColor() == 2){
+        rightColor = BROWN;
+        System.out.println("THE DONUT WAS BROWN");
+      }
+      else{
+        rightColor = BLUE;
+        System.out.println("THE DONUT WAS BLUE");
+      }
+      leftPanel.setBackground(leftColor);
+      midPanel.setBackground(midColor);
+      rightPanel.setBackground(rightColor);
+      p.setDonut(0);
     }
-    //-----------------------------------------------------------------
-    //  Provide empty definitions for unused event methods.
-    //-----------------------------------------------------------------
-    public void keyTyped (KeyEvent event) {}
-    public void keyReleased (KeyEvent event) {}
   }
 }

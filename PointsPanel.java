@@ -15,9 +15,7 @@ public class PointsPanel extends JPanel
   //-----------------------------------------------------------------
   public PointsPanel (Pusheen pusheenUser) {
     user = pusheenUser;
-//    points = user.getPoints();
     points = 0;
-    
     
     textLabel = new JLabel ("Points:");
     pointsLabel = new JLabel (String.valueOf(points));
@@ -35,32 +33,14 @@ public class PointsPanel extends JPanel
     textLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setFocusable(true);
-    
-    pointsLabel.addKeyListener (new DirectionListener());
   }
   
-  //*****************************************************************
-  //  Represents a listener for button push (action) events.
-  //*****************************************************************
-  private class DirectionListener implements KeyListener {
-    //--------------------------------------------------------------
-    //  Updates the counter and label when the button is pushed.
-    //--------------------------------------------------------------
-    public void keyPressed (KeyEvent event) {
-      switch (event.getKeyCode())    {
-        case KeyEvent.VK_UP: case KeyEvent.VK_DOWN:
-        case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT:          
-          System.out.println("Hit UP key");
-          points = user.getPoints();
-          pointsLabel.setText(String.valueOf(points));
-          break;        
-      } 
-    }
-    
-//-----------------------------------------------------------------
-// Provide empty definitions for unused event methods.
-//-----------------------------------------------------------------
-    public void keyTyped (KeyEvent event) {}
-    public void keyReleased (KeyEvent event) {}
+  public void setPoints(int p){
+    points = p;
   }
+  
+  public void setPointsLabel(int p){
+    points = p;
+    pointsLabel.setText(String.valueOf(points));
+  } 
 }

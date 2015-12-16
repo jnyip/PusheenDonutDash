@@ -20,13 +20,17 @@ public class MazePanel extends JPanel {
   private CountdownPanel countdown;
   private Color BROWN = new Color(97,80,73);
   private Color GREEN = new Color(170,230,135);
+  private PointsPanel pointsPanel;
+  private StomachPanel stomachPanel;
   
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
-  public MazePanel(String tgfFilename, Pusheen pusheenUser) {
+  public MazePanel(String tgfFilename, Pusheen pusheenUser, PointsPanel pp, StomachPanel sp) {
     user = pusheenUser;
     maze = new Maze(tgfFilename);
+    pointsPanel = pp;
+    stomachPanel = sp;
     llMaze = maze.getMaze();
     Paode start = maze.getBeginning();
     user.setPaode(start);
@@ -77,43 +81,58 @@ public class MazePanel extends JPanel {
     // instance variable 
     Paode p;
     boolean moved;
+    int points;
+    Donut donut;
+    Color leftColor, midColor, rightColor;
+    private Color WHITE = new Color(255, 255, 255);
+    private Color BLUE = new Color(181, 248, 255);
+    private Color PINK = new Color(245, 91, 98);
+    private Color BROWN = new Color(97, 80, 73);
     
     public void keyPressed (KeyEvent event){
       
-      // If condition1 == true OR condition2 == true...
+
+      donut = user.getPaode().getDonut();
       if (!user.getGameOver() && !user.getIsHome()) {
-//        System.out.println("MazePanel says gameOver is: " + countdown.gameOver());
         switch (event.getKeyCode()){
           case KeyEvent.VK_UP:
             p = user.getPaode().getTop();
             moved = user.move(p);
             if (moved) {
-              currentImage = cat;
-              y -= JUMP;
+              y -= JUMP;     
+              points = user.getPoints();
+              pointsPanel.setPointsLabel(points);
+              stomachPanel.eatDonuts();
             }
             break;
           case KeyEvent.VK_DOWN:
             p = user.getPaode().getBottom();
             moved = user.move(p);
             if (moved){
-              currentImage = cat;
               y += JUMP;
+              points = user.getPoints();
+              pointsPanel.setPointsLabel(points);
+              stomachPanel.eatDonuts();
             }
             break;  
           case KeyEvent.VK_LEFT:
             p = user.getPaode().getLeft();
             moved = user.move(p);
             if (moved){
-              currentImage = cat;
               x -= JUMP;
+              points = user.getPoints();
+              pointsPanel.setPointsLabel(points);
+              stomachPanel.eatDonuts();
             }
             break;
           case KeyEvent.VK_RIGHT:
             p = user.getPaode().getRight();
             moved = user.move(p);
             if (moved){
-              currentImage = cat;
               x += JUMP;
+              points = user.getPoints();
+              pointsPanel.setPointsLabel(points);
+              stomachPanel.eatDonuts();
             }
             break;
         }
