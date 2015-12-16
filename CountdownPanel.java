@@ -90,13 +90,13 @@ public class CountdownPanel extends JPanel {
       textLabel.setText("Time left:");
       timeLabel.setText(String.valueOf(time));
       
+      // Timer that executes every second (1000 millisecond)
       timer = new Timer();
       timer.schedule(new RemindTask(), 0, //initial delay
                      1 * 1000);
     }
   }
   
- 
   class RemindTask extends TimerTask {
     int numWarningBeeps = COUNTDOWN_SECONDS;
     
