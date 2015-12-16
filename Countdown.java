@@ -11,7 +11,7 @@ public class Countdown
     JFrame frame = new JFrame ("Countdown Tester"); // The title of the window
     frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); // by clicking the red "close window" button
     
-    CountdownPanel panel = new CountdownPanel(PusheenUser); // The Panel file only thing that needs to change
+    CountdownPanel panel = new CountdownPanel(); // The Panel file only thing that needs to change
     frame.getContentPane().add(panel);
     
     frame.pack();

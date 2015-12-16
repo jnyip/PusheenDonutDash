@@ -8,21 +8,23 @@ public class PusheenDonutDashPanel extends JPanel {
   
   private JLabel title;
   private JPanel countdown, points, stomach, maze;
+  private Pusheen PusheenUser;
   
   public PusheenDonutDashPanel(Pusheen pusheenUser) {
+    PusheenUser = new Pusheen();
     
     title = new JLabel ("Pusheen Donut Dash");
     title.setFont(new Font("Comic Sans", Font.BOLD, 30));
     title.setForeground(new Color(61, 34, 8));
     title.setAlignmentX(Component.CENTER_ALIGNMENT);
     
-    points = new PointsPanel();
+    points = new PointsPanel(PusheenUser);
     points.setPreferredSize(new Dimension(250, 110));
     countdown = new CountdownPanel();
     countdown.setPreferredSize(new Dimension(250, 110));
-    stomach = new StomachPanel();
+    stomach = new StomachPanel(PusheenUser);
     stomach.setPreferredSize(new Dimension(250, 180));
-    maze = new MazePanel("completeMazeUnfilled.tgf"); // temporary
+    maze = new MazePanel("completeMazeUnfilled.tgf", PusheenUser); // temporary
     maze.setPreferredSize(new Dimension(450, 450));
     
     Box rightBox = Box.createVerticalBox();
