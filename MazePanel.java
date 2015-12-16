@@ -22,15 +22,17 @@ public class MazePanel extends JPanel {
   private Color GREEN = new Color(170,230,135);
   private PointsPanel pointsPanel;
   private StomachPanel stomachPanel;
+  private EndTextPanel endText;
   
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
-  public MazePanel(String tgfFilename, Pusheen pusheenUser, PointsPanel pp, StomachPanel sp) {
+  public MazePanel(String tgfFilename, Pusheen pusheenUser, PointsPanel pp, StomachPanel sp, EndTextPanel et) {
     user = pusheenUser;
     maze = new Maze(tgfFilename);
     pointsPanel = pp;
     stomachPanel = sp;
+    endText = et;
     llMaze = maze.getMaze();
     Paode start = maze.getBeginning();
     user.setPaode(start);
@@ -112,6 +114,7 @@ public class MazePanel extends JPanel {
       donut = user.getPaode().getDonut();
       if (!user.getGameOver() && !user.getIsHome()) {
         switch (event.getKeyCode()){
+          
           case KeyEvent.VK_UP:
             p = user.getPaode().getTop();
             moved = user.move(p);
@@ -120,8 +123,10 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points);
               stomachPanel.eatDonuts();
+              endText.setText();
             }
             break;
+            
           case KeyEvent.VK_DOWN:
             p = user.getPaode().getBottom();
             moved = user.move(p);
@@ -130,8 +135,10 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points);
               stomachPanel.eatDonuts();
+              endText.setText();
             }
             break;  
+            
           case KeyEvent.VK_LEFT:
             p = user.getPaode().getLeft();
             moved = user.move(p);
@@ -140,8 +147,10 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points);
               stomachPanel.eatDonuts();
+              endText.setText();
             }
             break;
+            
           case KeyEvent.VK_RIGHT:
             p = user.getPaode().getRight();
             moved = user.move(p);
@@ -150,6 +159,7 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points);
               stomachPanel.eatDonuts();
+              endText.setText();
             }
             break;
         }

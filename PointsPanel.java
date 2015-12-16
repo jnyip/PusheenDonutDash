@@ -20,19 +20,16 @@ public class PointsPanel extends JPanel
     textLabel = new JLabel ("Points:");
     pointsLabel = new JLabel (String.valueOf(points));
     
-    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
-    pointsLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
+    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
+    pointsLabel.setFont(new Font("Comic Sans", Font.PLAIN, 25));
     
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(pointsLabel, BorderLayout.CENTER);
     
-    setPreferredSize(new Dimension(300, 110));
-    
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setForeground(new Color(61, 34, 8));
-//    pointsLabel.setFocusable(true);
   }
   
   public void setPointsLabel(int p){

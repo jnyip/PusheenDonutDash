@@ -33,15 +33,12 @@ public class CountdownPanel extends JPanel {
     timer.schedule(new RemindTask(), 0, //initial delay
                    1 * 1000); //subsequent rate
     
-    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
-    timeLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
+    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
+    timeLabel.setFont(new Font("Comic Sans", Font.PLAIN, 25));
     
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(timeLabel, BorderLayout.CENTER);
-//    add(push, BorderLayout.SOUTH);
-    
-    setPreferredSize(new Dimension(300, 110));
     
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
@@ -75,7 +72,6 @@ public class CountdownPanel extends JPanel {
       timer = new Timer();
       timer.schedule(new RemindTask(), 0, //initial delay
                      1 * 1000);
-      
     }
   }
   
