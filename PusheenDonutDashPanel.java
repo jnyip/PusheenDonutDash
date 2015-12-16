@@ -28,7 +28,7 @@ public class PusheenDonutDashPanel extends JPanel {
     Box rightBox = Box.createVerticalBox();
     rightBox.add(new Box.Filler(new Dimension(300, 10), new Dimension(300, 10), new Dimension(300, 10)));
     rightBox.add(title);
-//    rightBox.add(new Box.Filler(new Dimension(300, 50), new Dimension(300, 50), new Dimension(300, 50)));
+    rightBox.add(new Box.Filler(new Dimension(300, 10), new Dimension(300, 10), new Dimension(300, 10)));
     rightBox.add(countdown);
     rightBox.add(new Box.Filler(new Dimension(300, 5), new Dimension(300, 5), new Dimension(300, 5)));
     rightBox.add(points);
