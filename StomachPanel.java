@@ -1,3 +1,13 @@
+/* StomachPanel.java
+ * 
+ * Written by: Jesslyn Tannady
+ * CS 230 Final Project: Pusheen Donut Dash
+ * Partners: Jamie Yip and Brenda Ji
+ * Last Modified: December 16, 2015
+ * 
+ * Purpose: Displays Pusheen's stomach and the donuts she collects
+ */ 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,6 +25,13 @@ public class StomachPanel extends JPanel {
   private Color BROWN = new Color(97, 80, 73);
   private Pusheen user;
   
+  /* Constructor: Creates the StomachPanel where the order in which the donuts
+   * are collected will be displayed to the user. This panel must know about the
+   * same Pusheen object that the other Panels know about so that they are all 
+   * working according to the same Pusheen 
+   * 
+   * @param pusheenUser The Pusheen that all the panels must know about 
+   */
   public StomachPanel(Pusheen pusheenUser) {
     
     user = pusheenUser;
@@ -61,31 +78,47 @@ public class StomachPanel extends JPanel {
     
   }
   
+  /**
+   * eatDonuts()
+   * Allows other panels to tell this panel when the donut queue has been 
+   * updated.
+   *
+   * @param None
+   * @return Nothing   
+   */
   public void eatDonuts(){
-    Paode p = user.getPaode();
-    Donut donut = p.getDonut();
+    
+    // Gets the current Paode where Pusheen is
+    Paode p = user.getPaode();  
+    // Gets the status of whether there is a donut at the Paode where the user is
+    Donut donut = p.getDonut();  
+    // Gets whether there is a monster at the Paode where the use is
     boolean monster = p.getMonster();
     if (donut != null){
-      leftColor = midColor;
+      // shift the colors over as what would happen in an actual queue
+      leftColor = midColor; 
       midColor = rightColor;
-      System.out.println("I ATE A DONUT!!!!!!");
+//      System.out.println("I ATE A DONUT!!!!!!");
+      // Setting the color of the new donut 
       if (donut.getColor() == 1){
         rightColor = PINK;
-        System.out.println("THE DONUT WAS PINK");
+        System.out.println("PINK DONUT");
       }
       else if (donut.getColor() == 2){
         rightColor = BROWN;
-        System.out.println("THE DONUT WAS BROWN");
+        System.out.println("BROWN DONUT");
       }
       else{
         rightColor = BLUE;
-        System.out.println("THE DONUT WAS BLUE");
+        System.out.println("BLUE DONUT");
       }
+      // Set all the colors of panels 
       leftPanel.setBackground(leftColor);
       midPanel.setBackground(midColor);
       rightPanel.setBackground(rightColor);
-      p.setDonut(0);
+      p.setDonut(0); // remove the donut 
     }
+    // if there is a monster, represent the clearing of the DonutQueue
     if (monster){
       leftPanel.setBackground(WHITE);
       midPanel.setBackground(WHITE);

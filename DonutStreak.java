@@ -1,13 +1,15 @@
 /* DonutStreak.java
- * DonutStreak implements a queue data structure in order to keep track of the
- * order in which donuts are eaten by Pusheen. Essentially we want to keep the 
- * order to award points in the case that Pusheen gathers three donuts of the 
- * same color in a row. It is a representation of Pusheen's stomach and 
+ * DonutStreak implements a queue data structure that represents Pusheen's 
+ * stomach and the order in which the user gathers donuts. 
  * 
  * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
  * Partners: Jamie Yip and Jesslyn Tannady
- * December 9, 2015
+ * Last Modified: December 15, 2015
+ * 
+ * Purpose: To keep the order in which donuts are eaten to award points in the 
+ * case that the user gathers three donuts of the same color in a row. It is a
+ * representation of Pusheen's stomach.
  */ 
 
 import javafoundations.ArrayQueue;
@@ -42,35 +44,41 @@ public class DonutStreak{
    * Then the new donut can be enqueued and its color count in the array can 
    * also be increased. 
    *
-   * @param Donut The donut that is eaten and to be added to the queue 
+   * @param d The donut that is eaten and that will be added to the queue 
    * @return Nothing
    */
-  // should we clear the queue when there are three donuts in a row?
+
   public void eatAndPoop(Donut d){
     // Donut colors start at 1 so in the actual array they will be in 0th position 
     int color = d.getColor()-1; 
+    System.out.println("Donut queue size: " + donutQueue.size());
+    
+    if (donutQueue.size() == 3){
+      Donut dequeueDonut = donutQueue.dequeue();
+      System.out.println(dequeueDonut.printColor() + " DONUT REMOVED");
+      colorCount[dequeueDonut.getColor()-1]--;
+      donutQueue.enqueue(d);
+      colorCount[color]++;
+      System.out.println(d.printColor() + " DONUT ADDED ( == 3)");
+    }
+    
     if (donutQueue.size() < 3){
       donutQueue.enqueue(d);
       colorCount[color]++;
-    }
-   
-    else if (donutQueue.size() == 3){
-      Donut temp = donutQueue.dequeue();
-      colorCount[temp.getColor()-1]--;
-      donutQueue.enqueue(d);
-      colorCount[color]++;
+      System.out.println(d.printColor() + " DONUT ADDED (< 3) --> Donut queue size: " + donutQueue.size() );
     }
   }
   
   /**
    * checkStreak()
    * Loops through the colorCount array and checks for any streaks. Returns true
-   * if there are 3 donuts of the same color in a row)
+   * if any position in the colorCount array is an int of 3.
    *
    * @param None
    * @return boolean Returns whether or not there is a streak
    */
   public boolean checkStreak(){
+    System.out.println("Donut Queue Size before streak:  " + donutQueue.size());
     streak = false;
     for (int i = 0; i < colorCount.length; i++){
       if (colorCount[i] == 3)
@@ -94,8 +102,8 @@ public class DonutStreak{
     }
     // make all the color counts 0 
     colorCount[0] = 0; colorCount[1] = 0; colorCount[2] = 0; 
-    System.out.println("SCARED METHOD FROM DONUTSTREAK");
-    System.out.println(this);
+//    System.out.println("SCARED METHOD FROM DONUTSTREAK");
+//    System.out.println(this);
   }
  
   /* toString() 
@@ -105,22 +113,23 @@ public class DonutStreak{
    * @return String version of Object
    */
   public String toString(){
-    String s = "";
-    ArrayQueue<Donut> temp = donutQueue;
+    String s = "Donut Queue: \n";
+    ArrayQueue<Donut> temp = new ArrayQueue<Donut>();
+    
+    // add donuts to a temp array for testing purposes
     Donut[] donuts = new Donut[3];
     int i = 0;
-    while(temp.size() != 0){
-      donuts[i] = temp.dequeue();
+    while(!donutQueue.isEmpty()){
+      Donut currentDonut = donutQueue.dequeue();
+      s += ((currentDonut != null) ? ((i+1)+". " + currentDonut.printColor() + "\n") : ((i+1) + ". ----- \n"));
       i++;
+      temp.enqueue(currentDonut);
     }
-
-    s += "Donut Queue: \n";
-    for (int k = 0; k < donuts.length; k++){
-      if (donuts[k] != null)
-        s += (k+1) + ". " + donuts[k].printColor() + "\n";
-      else
-        s += (k+1) + ". ----- \n";
-    }
+    
+    if (donutQueue.isEmpty()) s+= ("Empty!");
+    
+    donutQueue = temp;
+    
     return s;
   }
   
@@ -144,12 +153,14 @@ public class DonutStreak{
     System.out.println("d2 color: " + d2.printColor());
     donuts.eatAndPoop(d3);  
     System.out.println("d3 color: " + d3.printColor());
-    System.out.println("*************\n" + donuts + "\n****************");
+    System.out.println("\n*************\n" + donuts + "*************\n");
+
     System.out.println("Streak? " + donuts.checkStreak());
+    System.out.println("\n*************\n" + donuts + "*************\n");
     
     System.out.println("Eat another donut: " + d4 + "\n");
     donuts.eatAndPoop(d4);
-    System.out.println(donuts);
+    System.out.println("\n*************\n" + donuts + "*************\n");
     
     donuts.scared();
     System.out.println("!!!!!Monster scare!!!!! \n" + donuts);

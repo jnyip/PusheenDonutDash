@@ -1,3 +1,13 @@
+/* Countdown.java
+ * Main method that makes the actual GUI of CountdownPanel 
+ * 
+ * Written by: Jesslyn Tannady
+ * CS 230 Final Project: Pusheen Donut Dash
+ * Partners: Jamie Yip and Brenda Ji
+ * Last Modified: December 13, 2015
+ * Purpose: Test CountdownPanel before adding it to the main GUI
+ */ 
+
 import javax.swing.JFrame;
 
 public class Countdown

@@ -33,7 +33,7 @@ public class PusheenDonutDashPanel extends JPanel {
     endText = new EndTextPanel(PusheenUser);
     countdown.setPreferredSize(new Dimension(300, 40));
     
-    maze = new MazePanel("completeMazeUnfilled.tgf", PusheenUser, points, stomach, endText); // temporary
+    maze = new MazePanel("maze.tgf", PusheenUser, points, stomach, endText); // temporary
     maze.setPreferredSize(new Dimension(450, 450));
     
     Box topBox = Box.createHorizontalBox();
