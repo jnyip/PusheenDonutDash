@@ -28,17 +28,17 @@ public class StomachPanel extends JPanel {
     brownButton.addActionListener (new ButtonListener());
     
     leftPanel = new JPanel();
-    leftPanel.setPreferredSize (new Dimension (30, 30));
+    leftPanel.setPreferredSize (new Dimension (20, 20));
     leftColor = WHITE;
     leftPanel.setBackground (leftColor);
     
     midPanel = new JPanel();
-    midPanel.setPreferredSize (new Dimension (30, 30));
+    midPanel.setPreferredSize (new Dimension (20, 20));
     midColor = WHITE;
     midPanel.setBackground (midColor);
     
     rightPanel = new JPanel();
-    rightPanel.setPreferredSize (new Dimension (30, 30));
+    rightPanel.setPreferredSize (new Dimension (20, 20));
     rightColor = WHITE;
     rightPanel.setBackground (rightColor);
    
@@ -62,7 +62,7 @@ public class StomachPanel extends JPanel {
     add(textLabel, BorderLayout.NORTH);
     add(bigPanel, BorderLayout.SOUTH);
     
-    setPreferredSize(new Dimension(300, 180));
+    setPreferredSize(new Dimension(300, 200));
     
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     setBackground(new Color(250, 241, 227));

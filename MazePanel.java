@@ -12,9 +12,9 @@ public class MazePanel extends JPanel {
   private Pusheen user;
   private Maze maze;
   private LinkedList<Paode> llMaze;
-  private final int WIDTH = 900, HEIGHT = 900;
-  private final int JUMP = 60; // increment for image movement
-  private final int IMAGE_SIZE = 60;
+  private final int WIDTH = 450, HEIGHT = 450;
+  private final int JUMP = 30; // increment for image movement
+  private final int IMAGE_SIZE = 30;
   private ImageIcon cat, currentImage;
   private int x, y;
   private Color BROWN = new Color(97,80,73);
@@ -30,9 +30,9 @@ public class MazePanel extends JPanel {
     user = new Pusheen(start);
     
     addKeyListener (new MazeListener());
-    x = 0;
-    y = 0;
-    cat = new ImageIcon ("images/pusheen.gif");
+    x = 30;
+    y = 30;
+    cat = new ImageIcon ("images/30pusheen.gif");
     currentImage = cat;
     setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));

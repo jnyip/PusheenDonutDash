@@ -29,33 +29,25 @@ public class PusheenDonutDashPanel extends JPanel {
     Box rightBox = Box.createVerticalBox();
     rightBox.add(new Box.Filler(new Dimension(300, 10), new Dimension(300, 10), new Dimension(300, 10)));
     rightBox.add(title);
-    rightBox.add(new Box.Filler(new Dimension(300, 100), new Dimension(300, 100), new Dimension(300, 100)));
+//    rightBox.add(new Box.Filler(new Dimension(300, 50), new Dimension(300, 50), new Dimension(300, 50)));
     rightBox.add(countdown);
     rightBox.add(new Box.Filler(new Dimension(300, 5), new Dimension(300, 5), new Dimension(300, 5)));
     rightBox.add(points);
     rightBox.add(new Box.Filler(new Dimension(300, 5), new Dimension(300, 5), new Dimension(300, 5)));
     rightBox.add(stomach);
     rightBox.add(new Box.Filler(new Dimension(300, 200), new Dimension(300, 200), new Dimension(300, 200)));
-//    rightBox.setPreferredSize(new Dimension(50, 150));
-    
-//    Box leftVBox = Box.createVerticalBox();
-//    leftVBox.add(new Box.Filler(new Dimension(900, 60), new Dimension(900, 60), new Dimension(900, 60)));
-//    leftVBox.add(maze);
-//    Box leftBox = Box.createHorizontalBox();
-//    leftBox.add(new Box.Filler(new Dimension(60, 900), new Dimension(60, 900), new Dimension(60, 900)));
-//    leftBox.add(leftVBox);
+    rightBox.setPreferredSize(new Dimension(50, 150));
     
     Box bigBox = Box.createHorizontalBox();
-//    bigBox.add(leftBox);
     bigBox.add(maze);
-    bigBox.add(new Box.Filler(new Dimension(100, 780), new Dimension(100, 780), new Dimension(150, 780)));
+    bigBox.add(new Box.Filler(new Dimension(50, 450), new Dimension(50, 450), new Dimension(50, 450)));
     bigBox.add(rightBox);
-//    bigBox.add(new Box.Filler(new Dimension(100, 780), new Dimension(100, 780), new Dimension(150, 780)));
+    bigBox.add(new Box.Filler(new Dimension(50, 450), new Dimension(50, 450), new Dimension(50, 450)));
     
     setLayout(new BorderLayout());
     add(bigBox, BorderLayout.CENTER);
     
-    setPreferredSize(new Dimension(2000, 1000));
+    setPreferredSize(new Dimension(1000, 450));
     setBackground(new Color(250, 241, 227));
   }
 }
