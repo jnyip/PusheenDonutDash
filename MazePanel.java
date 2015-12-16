@@ -79,14 +79,10 @@ public class MazePanel extends JPanel {
     boolean moved;
     
     public void keyPressed (KeyEvent event){
-      // ONLY GOES THROUGH IF...
-      // gameOver == false
-      // getIsHome == false
-      // if one of these are false (aka true) then we can keep moving
       
       // If condition1 == true OR condition2 == true...
       if (!countdown.gameOver() && !user.getIsHome()) {
-        System.out.println("MazePanel says gameOver is: " + countdown.gameOver());
+//        System.out.println("MazePanel says gameOver is: " + countdown.gameOver());
         switch (event.getKeyCode()){
           case KeyEvent.VK_UP:
             p = user.getPaode().getTop();

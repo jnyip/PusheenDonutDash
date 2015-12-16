@@ -19,7 +19,8 @@ public class MazeGUI
     
     frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     
-    frame.getContentPane().add (new MazePanel("completeMazeUnfilled.tgf"));
+    
+    frame.getContentPane().add (new MazePanel("completeMazeUnfilled.tgf"),);
     
     frame.setResizable(true);
     frame.pack();
