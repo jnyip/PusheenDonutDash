@@ -43,11 +43,13 @@ public class StomachPanel extends JPanel {
     rightPanel.setBackground (rightColor);
    
     Box panelBox = Box.createHorizontalBox();
+    panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
     panelBox.add(leftPanel);
-    panelBox.add(new Box.Filler(new Dimension(5, 100), new Dimension(5, 100), new Dimension(110, 30)));
+    panelBox.add(new Box.Filler(new Dimension(10, 20), new Dimension(10, 20), new Dimension(10, 20)));
     panelBox.add(midPanel);
-    panelBox.add(new Box.Filler(new Dimension(5, 100), new Dimension(5, 100), new Dimension(110, 30)));
+    panelBox.add(new Box.Filler(new Dimension(10, 20), new Dimension(10, 20), new Dimension(10, 20)));
     panelBox.add(rightPanel);
+    panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
     
     Box buttonBox = Box.createHorizontalBox();
     buttonBox.add(blueButton);
@@ -62,7 +64,7 @@ public class StomachPanel extends JPanel {
     add(textLabel, BorderLayout.NORTH);
     add(bigPanel, BorderLayout.SOUTH);
     
-    setPreferredSize(new Dimension(300, 200));
+    setPreferredSize(new Dimension(100, 100));
     
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     setBackground(new Color(250, 241, 227));

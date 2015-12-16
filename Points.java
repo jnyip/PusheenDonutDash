@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 
 public class Points
 {
+
    //-----------------------------------------------------------------
    //  Creates and displays the main program frame.
    //-----------------------------------------------------------------
@@ -17,4 +18,5 @@ public class Points
       frame.pack();
       frame.setVisible(true);
    }
+
 }
