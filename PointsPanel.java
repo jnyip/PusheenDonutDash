@@ -33,18 +33,22 @@ public class PointsPanel extends JPanel
     user = pusheenUser; // Set user to the given Pusheen 
     points = 0; // Initialize starting points to 0
     
+    // Initializing the text and points label for PointsPanel
     textLabel = new JLabel ("Points:");
     pointsLabel = new JLabel (String.valueOf(points));
     
+    // Setting the font
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     pointsLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     
+    // Add these components to the layout 
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(pointsLabel, BorderLayout.CENTER);
     
     setPreferredSize(new Dimension(300, 110));
     
+    // Set background and foreground colors 
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setForeground(new Color(61, 34, 8));

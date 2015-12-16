@@ -1,3 +1,13 @@
+/* PusheenDonutDashPanel.java
+ * 
+ * Written by: Jesslyn Tannady
+ * CS 230 Final Project: Pusheen Donut Dash
+ * Partners: Jamie Yip and Brenda Ji
+ * Last Modified: December 16, 2015
+ * 
+ * Purpose: Brings ALL the panels together into one cohesive GUI 
+ */ 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,12 +16,24 @@ import javax.swing.border.*;
 
 public class PusheenDonutDashPanel extends JPanel {
   
+  // Instance Variables 
   private JLabel title;
   private JPanel countdown, maze;
   private PointsPanel points;
   private StomachPanel stomach;
   private Pusheen PusheenUser;
   
+  /* Constructor: Creates a Panel that holds the MazePanel, StomachPanel, 
+   * PointsPanel and CountdownPanel 
+   * 
+   * This panel must also know about the "master" Pusheen 
+   * 
+   * @param tgfFilename The file that stores all the maze components
+   * @param pusheenUser The Pusheen that all the panels must know about 
+   * @param pp The PointsPanel that must be updated as the user plays the game
+   * @param sp The StomachPanel that also must be updated when the user collects
+   *           donuts
+   */
   public PusheenDonutDashPanel(Pusheen pusheenUser) {
     PusheenUser = pusheenUser;
     

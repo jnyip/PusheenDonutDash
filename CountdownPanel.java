@@ -16,12 +16,15 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class CountdownPanel extends JPanel {
+  
+  // Instance Variables 
   private Toolkit toolkit; // for the sound
-  private Timer timer;
+  private Timer timer; 
   private int COUNTDOWN_SECONDS = 90;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
-  private JButton push;
+  // May use button in the future, but not included for our purposes
+  private JButton push; 
   private Pusheen user;
   
   /* Constructor: Creates the CountdownPanel where a task is scheduled and 
@@ -38,15 +41,18 @@ public class CountdownPanel extends JPanel {
     textLabel = new JLabel ("Time left:");
     timeLabel = new JLabel (time);
     
+    // May use in the furture but not included for our current purposes
     push = new JButton ("Reset timer");
     push.addActionListener (new ButtonListener());
     
     timer.schedule(new RemindTask(), 0, //initial delay
                    1 * 1000); //subsequent rate
     
+    // Setting the text label 
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     timeLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     
+    // Border layout --> setting the format of the panels 
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(timeLabel, BorderLayout.CENTER);
@@ -54,15 +60,16 @@ public class CountdownPanel extends JPanel {
     
     setPreferredSize(new Dimension(300, 110));
     
+    // Coloring 
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     timeLabel.setForeground(new Color(61, 34, 8));
   }
   
-  //*****************************************************************
+  //*************************************************************************
   //  Represents a listener for button push (action) events.
-  //  COMMENTED OUT FOR GAME PURPOSES --> MAY USE IN THE FUTURE
-  //*****************************************************************
+  //  FOLLOWING NOT INCLUDED FOR OUR GAME PURPOSES --> MAY USE IN THE FUTURE
+  //*************************************************************************
   private class ButtonListener implements ActionListener {
     //--------------------------------------------------------------
     //  Updates the counter and label when the button is pushed.
@@ -91,19 +98,27 @@ public class CountdownPanel extends JPanel {
     }
   }
   
+ 
   class RemindTask extends TimerTask {
     int numWarningBeeps = COUNTDOWN_SECONDS;
     
+    /**
+     * run()
+     * Every second, the following code gets executed and updates the timer 
+     *
+     * @param None
+     * @return Nothing   
+     */
     public void run() {
-      if (user.getIsHome() == false) {
+      if (user.getIsHome() == false) { // Stopping the timer if the user is home
         if (numWarningBeeps > 0) {
-          user.setGameOver(false);
+          user.setGameOver(false); // Tell the user that the game is over 
           
           // Formatting
           String minutes = String.valueOf(numWarningBeeps/60);
           String seconds = String.valueOf(numWarningBeeps%60);
           if (seconds.length() == 1) {
-            seconds = "0" + seconds;
+            seconds = "0" + seconds; // formatting time display 
           }
           
           time = (minutes + ":" + seconds);
@@ -116,11 +131,11 @@ public class CountdownPanel extends JPanel {
           textLabel.setText("Time's up!");
           timeLabel.setText("0:00");
           user.setGameOver(true);
-          push.setEnabled(true);
-          timer.cancel();
+          push.setEnabled(true); // button --> not used for our purposes
+          timer.cancel(); // cancel timer when Pusheen is home 
         }
       } else {
-        user.setGameOver(true);
+        user.setGameOver(true); 
         push.setEnabled(true);
         timer.cancel();
       }

@@ -14,6 +14,8 @@ import java.awt.event.*;
 import java.util.*;
 
 public class MazePanel extends JPanel {
+  
+  // Instance Variables 
   private Pusheen user;
   private Maze maze;
   private LinkedList<Paode> llMaze;
@@ -23,7 +25,7 @@ public class MazePanel extends JPanel {
   private ImageIcon cat, monster, pinkDonut, brownDonut, blueDonut;
   private int x, y;
   private CountdownPanel countdown;
-  private Color BROWN = new Color(97,80,73);
+  private Color BROWN = new Color(97,80,73); // Final colors for our maze
   private Color GREEN = new Color(170,230,135);
   private PointsPanel pointsPanel;
   private StomachPanel stomachPanel;
@@ -63,6 +65,7 @@ public class MazePanel extends JPanel {
     pinkDonut = new ImageIcon("images/30dpink.gif");
     brownDonut = new ImageIcon("images/30dbrown.gif");
     blueDonut = new ImageIcon("images/30dblue.gif");
+    // Formatting Maze panel 
     setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
