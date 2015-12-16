@@ -17,8 +17,11 @@ public class CountdownPanel extends JPanel {
   private JLabel textLabel, timeLabel;
   private JButton push;
   private boolean gameOver;
+  private Pusheen user;
   
   public CountdownPanel() {
+    user = new Pusheen();
+    
     toolkit = Toolkit.getDefaultToolkit();
     timer = new Timer();
     
@@ -67,7 +70,6 @@ public class CountdownPanel extends JPanel {
       
       time = (minutes + ":" + seconds);
       
-//      timeLabel = String.valueOf(time); // When ANY button is clicked! (If there were more...)
       textLabel.setText("Time left:");
       timeLabel.setText(String.valueOf(time));
       
@@ -77,16 +79,13 @@ public class CountdownPanel extends JPanel {
     }
   }
   
-  
   class RemindTask extends TimerTask {
     int numWarningBeeps = COUNTDOWN_SECONDS;
     
     public void run() {
       if (numWarningBeeps > 0) {
-//        toolkit.beep();
-        
         gameOver = false;
-        System.out.println("CountdownPanel says gameOver is: " + gameOver);
+        
         // Formatting
         String minutes = String.valueOf(numWarningBeeps/60);
         String seconds = String.valueOf(numWarningBeeps%60);
@@ -97,17 +96,19 @@ public class CountdownPanel extends JPanel {
         time = (minutes + ":" + seconds);
         timeLabel.setText(time);
         
-        numWarningBeeps--;
-        push.setEnabled(false);
+        if (!user.getIsHome()) {
+          numWarningBeeps--;
+          push.setEnabled(false);
+        } else {
+          gameOver = true;
+          push.setEnabled(true);
+        }
       } else {
         toolkit.beep();
         textLabel.setText("Time's up!");
         timeLabel.setText("0:00");
         gameOver = true;
-        System.out.println("CountdownPanel says gameOver is: " + gameOver);
-//        System.out.println(time);
-        timer.cancel(); //Stops the timer, but is not necessary if we call System.exit
-//        System.exit(0); //Stops the AWT thread (and everything else)
+        timer.cancel();
         push.setEnabled(true);
       }
     }
