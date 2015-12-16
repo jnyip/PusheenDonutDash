@@ -185,34 +185,34 @@ public class Pusheen{
     d3.setRight(d3R);
     
     Pusheen user = new Pusheen();
-//    user.setPaode(start);
+    user.setPaode(start);
     System.out.println(user);
     
-//    System.out.println("\nEating Donuts");
-//    user.move(d1);
-//    user.move(d2);
-//    user.move(d3);
-//    System.out.println(user);
-//    
-//    System.out.println("\n. . . Moving . . .");
-//    System.out.println("User's CURRENT POSITION at Paode d3: \n" + user.getPaode());
-//    System.out.println("Top of this Paode is null, so Pusheen does not move. \n" 
-//                         + "Assuming that UP arrow has been pressed...");
-//    user.move(user.getPaode().getTop());
-//    System.out.println("User's POSITION after trying to go to a null spot: \n" + user.getPaode());
-//    
-//    System.out.println("\nBottom of d3 is another Paode.");
-//    System.out.println("User's CURRENT POSITION: " + user.getPaode());
-//    user.move(user.getPaode().getBottom());
-//    System.out.println("Assuming user has pressed down arrow, user's NEW " 
-//                         + "POSITION: \n" + user.getPaode());
-//    
-//    System.out.println("\nMONSTER!");
-//    user.move(monster);
-//    System.out.println(user);
-//    
-//    System.out.println("\nHOME! :)");
-//    user.move(home);
-//    System.out.println(user);
+    System.out.println("\nEating Donuts");
+    user.move(d1);
+    user.move(d2);
+    user.move(d3);
+    System.out.println(user);
+    
+    System.out.println("\n. . . Moving . . .");
+    System.out.println("User's CURRENT POSITION at Paode d3: \n" + user.getPaode());
+    System.out.println("Top of this Paode is null, so Pusheen does not move. \n" 
+                         + "Assuming that UP arrow has been pressed...");
+    user.move(user.getPaode().getTop());
+    System.out.println("User's POSITION after trying to go to a null spot: \n" + user.getPaode());
+    
+    System.out.println("\nBottom of d3 is another Paode.");
+    System.out.println("User's CURRENT POSITION: " + user.getPaode());
+    user.move(user.getPaode().getBottom());
+    System.out.println("Assuming user has pressed down arrow, user's NEW " 
+                         + "POSITION: \n" + user.getPaode());
+    
+    System.out.println("\nMONSTER!");
+    user.move(monster);
+    System.out.println(user);
+    
+    System.out.println("\nHOME! :)");
+    user.move(home);
+    System.out.println(user);
   }
 }

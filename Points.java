@@ -18,5 +18,4 @@ public class Points
       frame.pack();
       frame.setVisible(true);
    }
-
 }

@@ -1,6 +1,7 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+
 
 public class PointsPanel extends JPanel
 {
@@ -14,10 +15,9 @@ public class PointsPanel extends JPanel
   //-----------------------------------------------------------------
   public PointsPanel (Pusheen pusheenUser) {
     user = pusheenUser;
+//    points = user.getPoints();
     points = 0;
     
-    push = new JButton ("Add points");
-    push.addActionListener (new ButtonListener());
     
     textLabel = new JLabel ("Points:");
     pointsLabel = new JLabel (String.valueOf(points));
@@ -28,26 +28,39 @@ public class PointsPanel extends JPanel
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(pointsLabel, BorderLayout.CENTER);
-    add(push, BorderLayout.SOUTH);
     
     setPreferredSize(new Dimension(300, 110));
     
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setForeground(new Color(61, 34, 8));
+    pointsLabel.setFocusable(true);
+    
+    pointsLabel.addKeyListener (new DirectionListener());
   }
   
   //*****************************************************************
   //  Represents a listener for button push (action) events.
   //*****************************************************************
-  private class ButtonListener implements ActionListener {
+  private class DirectionListener implements KeyListener {
     //--------------------------------------------------------------
     //  Updates the counter and label when the button is pushed.
     //--------------------------------------------------------------
-    public void actionPerformed (ActionEvent event)
-    {
-      points++; // When ANY button is clicked! (If there were more...)
-      pointsLabel.setText(String.valueOf(points));
+    public void keyPressed (KeyEvent event) {
+      switch (event.getKeyCode())    {
+        case KeyEvent.VK_UP: case KeyEvent.VK_DOWN:
+        case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT:          
+          System.out.println("Hit UP key");
+          points = user.getPoints();
+          pointsLabel.setText(String.valueOf(points));
+          break;        
+      } 
     }
+    
+//-----------------------------------------------------------------
+// Provide empty definitions for unused event methods.
+//-----------------------------------------------------------------
+    public void keyTyped (KeyEvent event) {}
+    public void keyReleased (KeyEvent event) {}
   }
 }
