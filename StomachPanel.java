@@ -13,19 +13,12 @@ public class StomachPanel extends JPanel {
   private Color BLUE = new Color(181, 248, 255);
   private Color PINK = new Color(245, 91, 98);
   private Color BROWN = new Color(97, 80, 73);
+  private Pusheen user;
   
   public StomachPanel(Pusheen pusheenUser) {
     
+    user = pusheenUser;
     textLabel = new JLabel ("Last 3 collected:");
-    
-    blueButton = new JButton ("Blue");
-    blueButton.addActionListener (new ButtonListener());
-    
-    pinkButton = new JButton ("Pink");
-    pinkButton.addActionListener (new ButtonListener());
-    
-    brownButton = new JButton ("Brown");
-    brownButton.addActionListener (new ButtonListener());
     
     leftPanel = new JPanel();
     leftPanel.setPreferredSize (new Dimension (20, 20));
@@ -51,14 +44,8 @@ public class StomachPanel extends JPanel {
     panelBox.add(rightPanel);
     panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
     
-    Box buttonBox = Box.createHorizontalBox();
-    buttonBox.add(blueButton);
-    buttonBox.add(pinkButton);
-    buttonBox.add(brownButton);
-    
     Box bigPanel = Box.createVerticalBox();
     bigPanel.add(panelBox);
-    bigPanel.add(buttonBox);
     
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
@@ -69,34 +56,60 @@ public class StomachPanel extends JPanel {
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
+    
+    leftPanel.setFocusable(true);
+    midPanel.setFocusable(true);
+    rightPanel.setFocusable(true);
+    
+    leftPanel.addKeyListener(new StomachListener());
+    midPanel.addKeyListener(new StomachListener());
+    rightPanel.addKeyListener(new StomachListener());
+    
   }
-  
-  
   
   //*****************************************************************
   //  Represents the listener
   //*****************************************************************
-  private class ButtonListener implements ActionListener {
+  private class StomachListener implements KeyListener {
     //--------------------------------------------------------------
     //  Updates the counter and label when the button is pushed.
     //--------------------------------------------------------------
+//    DonutQueue donuts = user.getDonuts();
+    Donut donut;
     
-    public void actionPerformed (ActionEvent event)
+    public void keyPressed (KeyEvent event)
     {
-      leftColor = midColor;
-      midColor = rightColor;
-      
-      if (event.getSource() == blueButton) {
-        rightColor = BLUE;
-      } else if (event.getSource() == pinkButton) {
-        rightColor = PINK;
-      } else {
-        rightColor = BROWN;
+      donut = user.getPaode().getDonut();
+      if (donut != null){
+//        DonutQueue temp = donuts;
+//        Donut tempDonut = donuts.dequeue();
+        leftColor = midColor;
+        midColor = rightColor;
+        switch (event.getKeyCode()) {
+          case KeyEvent.VK_UP: case KeyEvent.VK_DOWN:
+          case KeyEvent.VK_LEFT: case KeyEvent.VK_RIGHT:          
+            System.out.println("Hit UP key");
+            if (donut.getColor() == 1){
+              rightColor = PINK;
+            }
+            else if (donut.getColor() == 2){
+              rightColor = BROWN;
+            }
+            else{
+              rightColor = BLUE;
+            }
+            leftPanel.setBackground(leftColor);
+            midPanel.setBackground(midColor);
+            rightPanel.setBackground(rightColor);
+            break;        
+        }
       }
-      
-      leftPanel.setBackground(leftColor);
-      midPanel.setBackground(midColor);
-      rightPanel.setBackground(rightColor);
+
     }
+    //-----------------------------------------------------------------
+    //  Provide empty definitions for unused event methods.
+    //-----------------------------------------------------------------
+    public void keyTyped (KeyEvent event) {}
+    public void keyReleased (KeyEvent event) {}
   }
 }

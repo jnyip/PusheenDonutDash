@@ -11,7 +11,7 @@ public class PusheenDonutDashPanel extends JPanel {
   private Pusheen PusheenUser;
   
   public PusheenDonutDashPanel(Pusheen pusheenUser) {
-    PusheenUser = new Pusheen();
+    PusheenUser = pusheenUser;
     
     title = new JLabel ("Pusheen Donut Dash");
     title.setFont(new Font("Comic Sans", Font.BOLD, 30));
