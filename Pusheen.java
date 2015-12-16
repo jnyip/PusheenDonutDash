@@ -142,6 +142,10 @@ public class Pusheen{
     donutPoints += points;
   }
   
+  public void setGameOver(boolean g){
+    gameOver = g;
+  }
+  
   /**
    * toString()
    * Gets the current Paode of Pusheen's position 
