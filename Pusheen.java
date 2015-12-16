@@ -6,13 +6,13 @@
  * Partners: Jamie Yip and Jesslyn Tannady
  * December 9, 2015
  */ 
- 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Pusheen{
- 
+  
   // Instance Variables
   private Paode user;
   private int donutPoints;
@@ -27,19 +27,19 @@ public class Pusheen{
    * 
    * @param p the Paode where Pusheen begins  
    */
-  public Pusheen(Paode p){
-   user = p;  
-   donuts = new DonutStreak();
-   donutPoints = 0;
-   isHome = false;
+  public Pusheen(){
+    user = null;  
+    donuts = new DonutStreak();
+    donutPoints = 0;
+    isHome = false;
   }
-   
+  
   /**
    * move()
    * Moves Pusheen to the given Paode while checking the given Paode's status 
    * (whether it contains a monster, donut, home, or nothing)
    *
-   * @param None
+   * @param p A Paode 
    * @return int Returns actual color of the donut  
    */
   public boolean move(Paode p){
@@ -60,11 +60,12 @@ public class Pusheen{
           System.out.println("DONUT STREAK!"); 
           p.setDonut(0);
         }
-        else // if no streak, simply adds a donut 
+        else{ // if no streak, simply adds a donut 
           donutPoints += p.getDonut().getVALUE();
           donuts.eatAndPoop(p.getDonut());
           p.setDonut(0);
           System.out.println("DONUT");
+        }
       }
       user = p; // update Pusheen's placement in the maze
       moved = true; 
@@ -74,22 +75,70 @@ public class Pusheen{
   }
   
   // ******************************* GETTERS ******************************* //
+  /**
+   * getPaode()
+   * Gets the current Paode of Pusheen's position 
+   *
+   * @param None
+   * @return Paode The current Paode where the user is  
+   */
   public Paode getPaode(){
     return user; 
   }
   
+  /**
+   * getIsHome()
+   * Returns whether or not Pusheen is home
+   *
+   * @param None
+   * @return boolean Returns if Pusheen is home   
+   */  
   public boolean getIsHome(){
     return isHome; 
   }
   
+  /**
+   * getDonuts()
+   * Returns the donut queue (Pusheen's stomach)
+   *
+   * @param None
+   * @return DonutStreak The donuts in Pusheen's stomach currently  
+   */
   public DonutStreak getDonuts(){
     return donuts; 
   }
   
+  /**
+   * getPoints()
+   * Returns the number of points the user has collected 
+   *
+   * @param None
+   * @return int The number of points Pusheen has   
+   */
   public int getPoints(){
     return donutPoints; 
   }
   
+// ******************************* SETTERS ******************************* //
+  /**
+   * setPaode()
+   * Sets Pusheen to the Paode given 
+   *
+   * @param Paode 
+   * @return Nothing   
+   */
+  public void setPaode(Paode p){
+    user = p;
+  }
+  
+  /**
+   * toString()
+   * Gets the current Paode of Pusheen's position 
+   *
+   * @param None
+   * @return String Representation of Pusheen's donut status, Paode location, 
+   *                and whether or not she has made it home yet. 
+   */
   public String toString(){
     String s = "";
 //    s += "Poade: " + user;
@@ -115,7 +164,8 @@ public class Pusheen{
     d3.setLeft(d3L);
     d3.setRight(d3R);
     
-    Pusheen user = new Pusheen(start);
+    Pusheen user = new Pusheen();
+    user.setPaode(start);
     System.out.println(user);
     
     System.out.println("\nEating Donuts");

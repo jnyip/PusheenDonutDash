@@ -24,7 +24,6 @@ public class PusheenDonutDashPanel extends JPanel {
     stomach.setPreferredSize(new Dimension(250, 180));
     maze = new MazePanel("completeMazeUnfilled.tgf"); // temporary
     maze.setPreferredSize(new Dimension(450, 450));
-
     
     Box rightBox = Box.createVerticalBox();
     rightBox.add(new Box.Filler(new Dimension(300, 10), new Dimension(300, 10), new Dimension(300, 10)));

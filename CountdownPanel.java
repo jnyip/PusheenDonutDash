@@ -12,10 +12,11 @@ import javax.swing.*;
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
   private Timer timer;
-  private int COUNTDOWN_SECONDS = 90;
+  private int COUNTDOWN_SECONDS = 15;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
   private JButton push;
+  private boolean gameOver;
   
   public CountdownPanel() {
     toolkit = Toolkit.getDefaultToolkit();
@@ -84,6 +85,8 @@ public class CountdownPanel extends JPanel {
       if (numWarningBeeps > 0) {
 //        toolkit.beep();
         
+        gameOver = false;
+        System.out.println("CountdownPanel says gameOver is: " + gameOver);
         // Formatting
         String minutes = String.valueOf(numWarningBeeps/60);
         String seconds = String.valueOf(numWarningBeeps%60);
@@ -100,12 +103,18 @@ public class CountdownPanel extends JPanel {
         toolkit.beep();
         textLabel.setText("Time's up!");
         timeLabel.setText("0:00");
+        gameOver = true;
+        System.out.println("CountdownPanel says gameOver is: " + gameOver);
 //        System.out.println(time);
         timer.cancel(); //Stops the timer, but is not necessary if we call System.exit
 //        System.exit(0); //Stops the AWT thread (and everything else)
         push.setEnabled(true);
       }
     }
+  }
+  
+  public boolean gameOver(){
+    return gameOver;
   }
   
   public static void main(String args[]) {

@@ -17,17 +17,19 @@ public class MazePanel extends JPanel {
   private final int IMAGE_SIZE = 30;
   private ImageIcon cat, currentImage;
   private int x, y;
+  private CountdownPanel countdown;
   private Color BROWN = new Color(97,80,73);
   private Color GREEN = new Color(170,230,135);
   
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
-  public MazePanel(String tgfFilename) {
+  public MazePanel(String tgfFilename, Pusheen push) {
+    user = push;
     maze = new Maze(tgfFilename);
     llMaze = maze.getMaze();
     Paode start = maze.getBeginning();
-    user = new Pusheen(start);
+    user.setPaode(start);
     
     addKeyListener (new MazeListener());
     x = 30;
@@ -37,6 +39,7 @@ public class MazePanel extends JPanel {
     setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
+    countdown = new CountdownPanel();
   }
   
   //-----------------------------------------------------------------     
@@ -76,43 +79,52 @@ public class MazePanel extends JPanel {
     boolean moved;
     
     public void keyPressed (KeyEvent event){
-     
-      switch (event.getKeyCode()){
-        case KeyEvent.VK_UP:
-          p = user.getPaode().getTop();
-          moved = user.move(p);
-          if (moved){
-            currentImage = cat;
-            y -= JUMP;
-          }
-          break;
-        case KeyEvent.VK_DOWN:
-          p = user.getPaode().getBottom();
-          moved = user.move(p);
-          if (moved){
-            currentImage = cat;
-            y += JUMP;
-          }
-          break;
-        case KeyEvent.VK_LEFT:
-          p = user.getPaode().getLeft();
-          moved = user.move(p);
-          if (moved){
-            currentImage = cat;
-            x -= JUMP;
-          }
-          break;
-        case KeyEvent.VK_RIGHT:
-          p = user.getPaode().getRight();
-          moved = user.move(p);
-          if (moved){
-            currentImage = cat;
-            x += JUMP;
-          }
-          break;
+      // ONLY GOES THROUGH IF...
+      // gameOver == false
+      // getIsHome == false
+      // if one of these are false (aka true) then we can keep moving
+      
+      // If condition1 == true OR condition2 == true...
+      if (!countdown.gameOver() && !user.getIsHome()) {
+        System.out.println("MazePanel says gameOver is: " + countdown.gameOver());
+        switch (event.getKeyCode()){
+          case KeyEvent.VK_UP:
+            p = user.getPaode().getTop();
+            moved = user.move(p);
+            if (moved) {
+              currentImage = cat;
+              y -= JUMP;
+            }
+            break;
+          case KeyEvent.VK_DOWN:
+            p = user.getPaode().getBottom();
+            moved = user.move(p);
+            if (moved){
+              currentImage = cat;
+              y += JUMP;
+            }
+            break;  
+          case KeyEvent.VK_LEFT:
+            p = user.getPaode().getLeft();
+            moved = user.move(p);
+            if (moved){
+              currentImage = cat;
+              x -= JUMP;
+            }
+            break;
+          case KeyEvent.VK_RIGHT:
+            p = user.getPaode().getRight();
+            moved = user.move(p);
+            if (moved){
+              currentImage = cat;
+              x += JUMP;
+            }
+            break;
+        }
+        repaint();
       }
-      repaint();
     }
+    
     
 //-----------------------------------------------------------------
 // Provide empty definitions for unused event methods.
