@@ -32,8 +32,8 @@ public class Pusheen{
     user = null;  
     donuts = new DonutStreak();
     donutPoints = 0;
-    isHome = false;
-    gameOver = false;
+//    isHome = false;
+//    gameOver = false;
   }
   
   /**
@@ -51,6 +51,7 @@ public class Pusheen{
         isHome = true;
         gameOver = true;
         System.out.println("HOME");
+        System.out.println("Pusheen says Pusheen is home: " + isHome);
       }
       if (p.getMonster()){ // check if the Paode contains a monster 
         donuts.scared();
@@ -144,6 +145,10 @@ public class Pusheen{
   
   public void setGameOver(boolean g){
     gameOver = g;
+  }
+  
+  public void setIsHome (boolean h) {
+    isHome = h;
   }
   
   /**

@@ -39,7 +39,7 @@ public class MazePanel extends JPanel {
     setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
-    countdown = new CountdownPanel();
+    countdown = new CountdownPanel(user);
   }
   
   //-----------------------------------------------------------------     
@@ -81,7 +81,7 @@ public class MazePanel extends JPanel {
     public void keyPressed (KeyEvent event){
       
       // If condition1 == true OR condition2 == true...
-      if (!countdown.gameOver() && !user.getIsHome()) {
+      if (!user.getGameOver() && !user.getIsHome()) {
 //        System.out.println("MazePanel says gameOver is: " + countdown.gameOver());
         switch (event.getKeyCode()){
           case KeyEvent.VK_UP:
