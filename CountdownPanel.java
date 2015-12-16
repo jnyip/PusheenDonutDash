@@ -39,7 +39,7 @@ public class CountdownPanel extends JPanel {
     setLayout(new BorderLayout());
     add(textLabel, BorderLayout.NORTH);
     add(timeLabel, BorderLayout.CENTER);
-    add(push, BorderLayout.SOUTH);
+//    add(push, BorderLayout.SOUTH);
     
     setPreferredSize(new Dimension(300, 110));
     

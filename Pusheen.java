@@ -59,15 +59,15 @@ public class Pusheen{
         System.out.println("MONSTER!"); 
       }
       if (p.getDonut() != null){ // check if Paode contains a donut 
+          donutPoints += p.getDonut().getVALUE();
+          donuts.eatAndPoop(p.getDonut());
+          System.out.println("DONUT");
+        
         if (donuts.checkStreak()){ // must check for donut streak first 
           donutPoints += 10;
           System.out.println("DONUT STREAK!"); 
         }
-        else{ // if no streak, simply adds a donut 
-          donutPoints += p.getDonut().getVALUE();
-          donuts.eatAndPoop(p.getDonut());
-          System.out.println("DONUT");
-        }
+        
       }
       user = p; // update Pusheen's placement in the maze
       moved = true; 

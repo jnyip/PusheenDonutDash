@@ -51,7 +51,7 @@ public class StomachPanel extends JPanel {
     add(textLabel, BorderLayout.NORTH);
     add(bigPanel, BorderLayout.SOUTH);
     
-    setPreferredSize(new Dimension(100, 100));
+    setPreferredSize(new Dimension(100, 200));
     
     textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
     setBackground(new Color(250, 241, 227));
@@ -66,6 +66,7 @@ public class StomachPanel extends JPanel {
   public void eatDonuts(){
     Paode p = user.getPaode();
     Donut donut = p.getDonut();
+    boolean monster = p.getMonster();
     if (donut != null){
       leftColor = midColor;
       midColor = rightColor;
@@ -86,6 +87,12 @@ public class StomachPanel extends JPanel {
       midPanel.setBackground(midColor);
       rightPanel.setBackground(rightColor);
       p.setDonut(0);
+    }
+    if (monster){
+      leftPanel.setBackground(WHITE);
+      midPanel.setBackground(WHITE);
+      rightPanel.setBackground(WHITE);
+      leftColor = midColor = rightColor = WHITE;
     }
   }
 }

@@ -20,6 +20,7 @@ public class DonutStreak{
   // Instance Variables
   private ArrayQueue<Donut> donutQueue; // 1: pink, 2: brown, 3: blue
   private int[] colorCount; // [0]: pink [1]: brown [2]: blue 
+  private boolean streak;
   
   /* Constructor: Create a queue of Donut objects and an array to keep track of
    * the number of the colors of the donuts that are eaten 
@@ -48,9 +49,6 @@ public class DonutStreak{
   public void eatAndPoop(Donut d){
     // Donut colors start at 1 so in the actual array they will be in 0th position 
     int color = d.getColor()-1; 
-//    System.out.println("Given donut color: " + color);
-//    System.out.println("Donut Queue size: " + donutQueue.size());
-
     if (donutQueue.size() < 3){
       donutQueue.enqueue(d);
       colorCount[color]++;
@@ -58,7 +56,6 @@ public class DonutStreak{
    
     else if (donutQueue.size() == 3){
       Donut temp = donutQueue.dequeue();
-//      System.out.println("Temp donut color: " + temp.getColor());
       colorCount[temp.getColor()-1]--;
       donutQueue.enqueue(d);
       colorCount[color]++;
@@ -74,12 +71,15 @@ public class DonutStreak{
    * @return boolean Returns whether or not there is a streak
    */
   public boolean checkStreak(){
+    streak = false;
     for (int i = 0; i < colorCount.length; i++){
       if (colorCount[i] == 3)
-        return true;
+        streak = true;
     }
-    return false;
+    return streak;
   }
+  
+  
   
   /**
    * scared()
@@ -94,6 +94,8 @@ public class DonutStreak{
     }
     // make all the color counts 0 
     colorCount[0] = 0; colorCount[1] = 0; colorCount[2] = 0; 
+    System.out.println("SCARED METHOD FROM DONUTSTREAK");
+    System.out.println(this);
   }
  
   /* toString() 

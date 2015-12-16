@@ -32,11 +32,7 @@ public class PointsPanel extends JPanel
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     pointsLabel.setForeground(new Color(61, 34, 8));
-    pointsLabel.setFocusable(true);
-  }
-  
-  public void setPoints(int p){
-    points = p;
+//    pointsLabel.setFocusable(true);
   }
   
   public void setPointsLabel(int p){
