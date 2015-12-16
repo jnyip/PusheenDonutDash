@@ -19,11 +19,11 @@ public class PusheenDonutDashPanel extends JPanel {
     title.setAlignmentX(Component.CENTER_ALIGNMENT);
     
     points = new PointsPanel(PusheenUser);
-    points.setPreferredSize(new Dimension(250, 110));
+    points.setPreferredSize(new Dimension(300, 110));
     countdown = new CountdownPanel();
-    countdown.setPreferredSize(new Dimension(250, 110));
+    countdown.setPreferredSize(new Dimension(300, 110));
     stomach = new StomachPanel(PusheenUser);
-    stomach.setPreferredSize(new Dimension(250, 180));
+    stomach.setPreferredSize(new Dimension(300, 200));
     maze = new MazePanel("completeMazeUnfilled.tgf", PusheenUser); // temporary
     maze.setPreferredSize(new Dimension(450, 450));
     
