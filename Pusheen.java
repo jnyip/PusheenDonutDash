@@ -1,4 +1,6 @@
 /* Pusheen.java
+ * Pusheen class creates an "avatar" for the user to play as.  
+ * 
  * Written by: Brenda Ji 
  * CS 230 Final Project: Pusheen Donut Dash
  * Partners: Jamie Yip and Jesslyn Tannady
@@ -11,12 +13,20 @@ import java.awt.event.*;
 
 public class Pusheen{
  
-  // instance variables
+  // Instance Variables
   private Paode user;
   private int donutPoints;
   private boolean isHome;
   private DonutStreak donuts;
   
+  /* Constructor: Create a Pusheen object that can move over the paodes in the 
+   * maze. 
+   * 
+   * Creates a Pusheen at the given Paode, initializes DonutStreak, DonutPoints,
+   * and isHome
+   * 
+   * @param p the Paode where Pusheen begins  
+   */
   public Pusheen(Paode p){
    user = p;  
    donuts = new DonutStreak();
@@ -24,55 +34,48 @@ public class Pusheen{
    isHome = false;
   }
    
-  // returns true if Pusheen was able to move 
+  /**
+   * move()
+   * Moves Pusheen to the given Paode while checking the given Paode's status 
+   * (whether it contains a monster, donut, home, or nothing)
+   *
+   * @param None
+   * @return int Returns actual color of the donut  
+   */
   public boolean move(Paode p){
     boolean moved = false;
-    if (p != null){
-      if (p.getHome()){
+    if (p != null){ // makes sure that the given paode is real first 
+      if (p.getHome()){ // check if home
         isHome = true;
-        System.out.println("Pusheen is home!");
+        System.out.println("HOME");
       }
-      if (p.getMonster()){
+      if (p.getMonster()){ // check if the Paode contains a monster 
         donuts.scared();
         donutPoints = 0;
-        System.out.println("Pusheen ran into a monster!"); 
+        System.out.println("MONSTER!"); 
       }
-      if (p.getDonut() != null){
-        if (donuts.checkStreak()){
+      if (p.getDonut() != null){ // check if Paode contains a donut 
+        if (donuts.checkStreak()){ // must check for donut streak first 
           donutPoints += 10;
-          System.out.println("Donut Streak!"); 
+          System.out.println("DONUT STREAK!"); 
+          p.setDonut(0);
         }
-        else
+        else // if no streak, simply adds a donut 
           donutPoints += p.getDonut().getVALUE();
           donuts.eatAndPoop(p.getDonut());
-          System.out.println("Pusheen ate a donut!"); 
+          p.setDonut(0);
+          System.out.println("DONUT");
       }
       user = p; // update Pusheen's placement in the maze
-      moved = true;
-      System.out.println("Pusheen has been moved.");
+      moved = true; 
+      System.out.println("Pusheen was able to move.");
     }
     return moved;
   }
   
-  // Getters
-  public Paode currentPosition(){
+  // ******************************* GETTERS ******************************* //
+  public Paode getPaode(){
     return user; 
-  }
-  
-  public Paode getTop(){
-    return user.getTop();
-  }
-  
-  public Paode getBottom(){
-    return user.getBottom(); 
-  }
-  
-  public Paode getLeft(){
-    return user.getLeft(); 
-  }
-  
-  public Paode getRight(){
-    return user.getRight();
   }
   
   public boolean getIsHome(){
@@ -122,17 +125,17 @@ public class Pusheen{
     System.out.println(user);
     
     System.out.println("\n. . . Moving . . .");
-    System.out.println("User's CURRENT POSITION at Paode d3: \n" + user.currentPosition());
+    System.out.println("User's CURRENT POSITION at Paode d3: \n" + user.getPaode());
     System.out.println("Top of this Paode is null, so Pusheen does not move. \n" 
                          + "Assuming that UP arrow has been pressed...");
-    user.move(user.getTop());
-    System.out.println("User's POSITION after trying to go to a null spot: \n" + user.currentPosition());
+    user.move(user.getPaode().getTop());
+    System.out.println("User's POSITION after trying to go to a null spot: \n" + user.getPaode());
     
     System.out.println("\nBottom of d3 is another Paode.");
-    System.out.println("User's CURRENT POSITION: " + user.currentPosition());
-    user.move(user.getBottom());
+    System.out.println("User's CURRENT POSITION: " + user.getPaode());
+    user.move(user.getPaode().getBottom());
     System.out.println("Assuming user has pressed down arrow, user's NEW " 
-                         + "POSITION: \n" + user.currentPosition());
+                         + "POSITION: \n" + user.getPaode());
     
     System.out.println("\nMONSTER!");
     user.move(monster);
