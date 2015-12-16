@@ -38,28 +38,28 @@ public class StomachPanel extends JPanel {
     textLabel = new JLabel ("Last 3 collected:");
     
     leftPanel = new JPanel();
-    leftPanel.setPreferredSize (new Dimension (20, 20));
+    leftPanel.setPreferredSize (new Dimension (20, 75));
     leftColor = WHITE;
     leftPanel.setBackground (leftColor);
     
     midPanel = new JPanel();
-    midPanel.setPreferredSize (new Dimension (20, 20));
+    midPanel.setPreferredSize (new Dimension (20, 75));
     midColor = WHITE;
     midPanel.setBackground (midColor);
     
     rightPanel = new JPanel();
-    rightPanel.setPreferredSize (new Dimension (20, 20));
+    rightPanel.setPreferredSize (new Dimension (20, 75));
     rightColor = WHITE;
     rightPanel.setBackground (rightColor);
     
     Box panelBox = Box.createHorizontalBox();
-    panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
+    panelBox.add(new Box.Filler(new Dimension(100, 20), new Dimension(100, 20), new Dimension(100, 20)));
     panelBox.add(leftPanel);
     panelBox.add(new Box.Filler(new Dimension(10, 20), new Dimension(10, 20), new Dimension(10, 20)));
     panelBox.add(midPanel);
     panelBox.add(new Box.Filler(new Dimension(10, 20), new Dimension(10, 20), new Dimension(10, 20)));
     panelBox.add(rightPanel);
-    panelBox.add(new Box.Filler(new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20)));
+    panelBox.add(new Box.Filler(new Dimension(100, 20), new Dimension(100, 20), new Dimension(100, 20)));
     
     Box bigPanel = Box.createVerticalBox();
     bigPanel.add(panelBox);
@@ -68,9 +68,7 @@ public class StomachPanel extends JPanel {
     add(textLabel, BorderLayout.NORTH);
     add(bigPanel, BorderLayout.SOUTH);
     
-    setPreferredSize(new Dimension(100, 200));
-    
-    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 30));
+    textLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
     setBackground(new Color(250, 241, 227));
     textLabel.setForeground(new Color(61, 34, 8));
     

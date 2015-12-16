@@ -275,8 +275,8 @@ public class Maze{
     **************             Testing            ******************
     ***************************************************************/
   public static void main (String[] args){
-    System.out.println("Test #1 of completeMazeUnfilled.tgf");
-    Maze real = new Maze("completeMazeUnfilled.tgf");
+    System.out.println("Test #1 of maze.tgf");
+    Maze real = new Maze("maze.tgf");
     System.out.println(real);
     System.out.println(real.getBeginning());
     System.out.println(real.getHome());

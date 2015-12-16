@@ -29,8 +29,8 @@ public class MazePanel extends JPanel {
   private Color GREEN = new Color(170,230,135);
   private PointsPanel pointsPanel;
   private StomachPanel stomachPanel;
+  private EndTextPanel endText;
   
- 
   /* Constructor: Creates a MazePanel that takes in a maze tgf file, a Pusheen, 
    * and two panels that must know about the actions that the user takes in this 
    * panel.
@@ -46,13 +46,14 @@ public class MazePanel extends JPanel {
    * @param sp The StomachPanel that also must be updated when the user collects
    *           donuts
    */
-  public MazePanel(String tgfFilename, Pusheen pusheenUser, PointsPanel pp, StomachPanel sp) {
+  public MazePanel(String tgfFilename, Pusheen pusheenUser, PointsPanel pp, StomachPanel sp, EndTextPanel et) {
     user = pusheenUser;
     maze = new Maze(tgfFilename);
     pointsPanel = pp;
     stomachPanel = sp;
-    llMaze = maze.getMaze(); //Linked list of the maze 
-    Paode start = maze.getBeginning(); // Set the user to the start of the maze
+    endText = et;
+    llMaze = maze.getMaze();
+    Paode start = maze.getBeginning();
     user.setPaode(start);
     
     addKeyListener (new MazeListener());
@@ -152,6 +153,7 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points); // Update PointsPanel 
               stomachPanel.eatDonuts(); // Update StomachPanel
+              endText.setText(); // Update the winner message
             }
             break;
           case KeyEvent.VK_DOWN: // DOWN key 
@@ -163,6 +165,7 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points); // Update PointsPanel 
               stomachPanel.eatDonuts(); // Update StomachPanel
+              endText.setText(); // Update the winner message
             }
             break;  
           case KeyEvent.VK_LEFT: // LEFT key
@@ -174,6 +177,7 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points); // Update PointsPanel 
               stomachPanel.eatDonuts(); // Update StomachPanel
+              endText.setText(); // Update the winner message
             }
             break;
           case KeyEvent.VK_RIGHT: // RIGHT key
@@ -185,6 +189,7 @@ public class MazePanel extends JPanel {
               points = user.getPoints();
               pointsPanel.setPointsLabel(points); // Update PointsPanel 
               stomachPanel.eatDonuts(); // Update StomachPanel
+              endText.setText(); // Update the winner message
             }
             break;
         }

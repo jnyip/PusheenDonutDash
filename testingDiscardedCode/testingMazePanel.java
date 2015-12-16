@@ -16,7 +16,7 @@ public class testingMazePanel extends JPanel{
   public void paintComponent (Graphics page){
     super.paintComponent(page);
     
-    Maze maze1 = new Maze("completeMazeUnfilled.tgf");
+    Maze maze1 = new Maze("maze.tgf");
     LinkedList<Paode> llMaze = maze1.getMaze();
     for (int i = 0 ; i < maze1.getSize(); i++){
       Paode current = llMaze.get(i);
