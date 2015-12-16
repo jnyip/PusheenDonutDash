@@ -6,30 +6,35 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class MazePanel extends JPanel {
   private Pusheen user;
   private Maze maze;
-  private final int WIDTH = 500, HEIGHT = 500;
-  private final int JUMP = 121; // increment for image movement
-  private final int IMAGE_SIZE = 31;
+  private LinkedList<Paode> llMaze;
+  private final int WIDTH = 900, HEIGHT = 900;
+  private final int JUMP = 60; // increment for image movement
+  private final int IMAGE_SIZE = 60;
   private ImageIcon cat, currentImage;
   private int x, y;
+  private Color BROWN = new Color(97,80,73);
+  private Color GREEN = new Color(170,230,135);
   
 //-----------------------------------------------------------------
 // Constructor: Sets up this panel and loads the images.
 //-----------------------------------------------------------------
   public MazePanel(String tgfFilename) {
     maze = new Maze(tgfFilename);
+    llMaze = maze.getMaze();
     Paode start = maze.getBeginning();
     user = new Pusheen(start);
     
     addKeyListener (new MazeListener());
-    x = 30;
-    y = 30;
+    x = 0;
+    y = 0;
     cat = new ImageIcon ("images/pusheen.gif");
     currentImage = cat;
-//    setBackground (Color.black);
+    setBackground (BROWN);
     setPreferredSize (new Dimension(WIDTH, HEIGHT));
     setFocusable(true);
   }
@@ -39,6 +44,21 @@ public class MazePanel extends JPanel {
   //-----------------------------------------------------------------     
   public void paintComponent (Graphics page) {        
     super.paintComponent (page);        
+
+    for (int i = 0 ; i < maze.getSize(); i++){
+      Paode current = llMaze.get(i);
+      page.setColor(GREEN);
+      page.fillRect( ((current.getXCoor()*30)/*-60*/),
+                    ((current.getYCoor()*30)/*-60*/), 30,30);
+    }
+    
+    page.setColor(BROWN);
+    page.fillRect( 0,0, 30,30);
+    Paode home = maze.getHome();
+    page.setColor(new Color (196,138,102));
+    page.fillRect( ((home.getXCoor()*30)/*-30*/),
+                    ((home.getYCoor()*30)/*-30/*/), 30,30);
+    
     currentImage.paintIcon (this, page, x, y); 
   }
   
