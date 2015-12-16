@@ -12,15 +12,14 @@ import javax.swing.*;
 public class CountdownPanel extends JPanel {
   private Toolkit toolkit; // for the sound
   private Timer timer;
-  private int COUNTDOWN_SECONDS = 15;
+  private int COUNTDOWN_SECONDS = 35;
   private String time; // formatted time
   private JLabel textLabel, timeLabel;
   private JButton push;
-  private boolean gameOver;
   private Pusheen user;
   
-  public CountdownPanel() {
-    user = new Pusheen();
+  public CountdownPanel(Pusheen PusheenUser) {
+    user = PusheenUser;
     
     toolkit = Toolkit.getDefaultToolkit();
     timer = new Timer();
@@ -58,7 +57,7 @@ public class CountdownPanel extends JPanel {
     //--------------------------------------------------------------
     public void actionPerformed (ActionEvent event)
     {
-      new CountdownPanel();
+      new CountdownPanel(user);
       
       int numWarningBeeps = COUNTDOWN_SECONDS;
       
@@ -75,7 +74,8 @@ public class CountdownPanel extends JPanel {
       
       timer = new Timer();
       timer.schedule(new RemindTask(), 0, //initial delay
-                   1 * 1000);
+                     1 * 1000);
+      
     }
   }
   
@@ -83,43 +83,42 @@ public class CountdownPanel extends JPanel {
     int numWarningBeeps = COUNTDOWN_SECONDS;
     
     public void run() {
-      if (numWarningBeeps > 0) {
-        gameOver = false;
-        
-        // Formatting
-        String minutes = String.valueOf(numWarningBeeps/60);
-        String seconds = String.valueOf(numWarningBeeps%60);
-        if (seconds.length() == 1) {
-          seconds = "0" + seconds;
-        }
-        
-        time = (minutes + ":" + seconds);
-        timeLabel.setText(time);
-        
-        if (!user.getIsHome()) {
+      if (user.getIsHome() == false) {
+        if (numWarningBeeps > 0) {
+          user.setGameOver(false);
+          
+          // Formatting
+          String minutes = String.valueOf(numWarningBeeps/60);
+          String seconds = String.valueOf(numWarningBeeps%60);
+          if (seconds.length() == 1) {
+            seconds = "0" + seconds;
+          }
+          
+          time = (minutes + ":" + seconds);
+          timeLabel.setText(time);
+          
           numWarningBeeps--;
           push.setEnabled(false);
         } else {
-          gameOver = true;
+          toolkit.beep();
+          textLabel.setText("Time's up!");
+          timeLabel.setText("0:00");
+          user.setGameOver(true);
           push.setEnabled(true);
+          timer.cancel();
         }
       } else {
-        toolkit.beep();
-        textLabel.setText("Time's up!");
-        timeLabel.setText("0:00");
-        gameOver = true;
-        timer.cancel();
+        user.setGameOver(true);
         push.setEnabled(true);
+        timer.cancel();
       }
+      System.out.println("CDP says Pusheen is home : " + user.getIsHome());
     }
   }
   
-  public boolean gameOver(){
-    return gameOver;
-  }
-  
-  public static void main(String args[]) {
-    System.out.println("Starting countdown.");
-    new CountdownPanel();
-  }
+//  public static void main(String args[]) {
+//    Pusheen user = new Pusheen();
+//    System.out.println("Starting countdown.");
+//    new CountdownPanel(user);
+//  }
 }

@@ -11,7 +11,7 @@ public class PusheenDonutDashPanel extends JPanel {
   private Pusheen PusheenUser;
   
   public PusheenDonutDashPanel(Pusheen pusheenUser) {
-    PusheenUser = new Pusheen();
+    PusheenUser = pusheenUser;
     
     title = new JLabel ("Pusheen Donut Dash");
     title.setFont(new Font("Comic Sans", Font.BOLD, 30));
@@ -20,7 +20,7 @@ public class PusheenDonutDashPanel extends JPanel {
     
     points = new PointsPanel(PusheenUser);
     points.setPreferredSize(new Dimension(300, 110));
-    countdown = new CountdownPanel();
+    countdown = new CountdownPanel(PusheenUser);
     countdown.setPreferredSize(new Dimension(300, 110));
     stomach = new StomachPanel(PusheenUser);
     stomach.setPreferredSize(new Dimension(300, 200));
