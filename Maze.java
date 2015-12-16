@@ -151,6 +151,22 @@ public class Maze{
     return home;
   }
   
+  /* getSize() - Get n
+   * @param  None
+   * @return int  n (the size)
+   */
+  public int getSize(){
+    return n;
+  }
+  
+  /* getMaze() - Get the Linked List of Paodes
+   * @param  None
+   * @return LinkedList<Paode>  the Linked List of Paodes
+   */
+  public LinkedList<Paode> getMaze(){
+    return maze;
+  }
+  
   /*****************************************************************
     **************     Formatting for Printing      ****************
     ***************************************************************/
@@ -205,7 +221,9 @@ public class Maze{
     // Traverses the 2D Maze and appends them to the String
     for (int i = 0; i < 14; i++){
       for( int j = 0; j < 14; j++){
-        result += (paodeMaze[i][j]+" ");
+        // Swapped j and i so that the 2D visual is matching the Cartesian 
+        // coordinate system with 0,0 at the top left corner
+        result += (paodeMaze[j][i]+" "); 
       }
       result +="\n";
     }
@@ -226,8 +244,9 @@ public class Maze{
       int currentY = current.getYCoor();
       
       // Get Current node information to print out
-      System.out.println("Paode's X: " + currentX + "|| Paode's Y: " + currentY);
-      System.out.println("Paode String at paodeMaze("+currentX+", " + currentY+"): " + paodeMaze[currentX][currentY]);
+      System.out.println("Paode's X: " + currentX + "|| Paode's Y: " +currentY);
+      System.out.println("Paode String at paodeMaze("+currentX+", " + currentY
+                           +"): " + paodeMaze[currentX][currentY]);
       System.out.println("Current Paode: " + current);
       
       // Prints out top, bottom, left, right info
